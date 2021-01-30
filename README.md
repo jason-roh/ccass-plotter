@@ -8,9 +8,9 @@ python3 -m venv “env name”
 ```
 3. Install flask and other modules needed 
 ```
-ccassplotter-flask/packages.txt
+ccassplotter-flask/requirements.txt
 ```
-4. Start flask
+4. Start flask with Port 8080
 
 ### React set-up
 1. Go to ccassplotter-web folder

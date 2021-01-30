@@ -62,6 +62,7 @@ export default function CcassPlotter(props) {
       setCloudColor(BLUE_COLOR);
     }).catch(rejected => {
       console.log(rejected);
+      setCloudColor(GREY_COLOR);
     });
   }
 
