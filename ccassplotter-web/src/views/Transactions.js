@@ -46,13 +46,13 @@ const columns2 = [
     { field: 'AsOf', headerName: 'As Of', width: 130 },
     { field: 'ParticipantId', headerName: 'Participant ID', width: 150 },
     { field: 'Name', headerName: 'Name', width: 450 },
-    { 
+    {
         field: 'Side', headerName: 'Side', width: 150,
         cellClassName: (params) =>
-        clsx('super-app', {
-            negative: params.value === 'SELL',
-            positive: params.value === 'BUY',
-        }),
+            clsx('super-app', {
+                negative: params.value === 'SELL',
+                positive: params.value === 'BUY',
+            }),
     },
 ];
 
@@ -113,79 +113,81 @@ export default function HistoricalHoldings(props) {
     }
 
     return (
-        <Container>
-            <Box mt={3}>
-                <h1>Transaction Finder <IconButton onClick={clickRefreshButton}><RefreshIcon></RefreshIcon></IconButton>
-                    {isRequested ? <CircularProgress></CircularProgress> : <p></p>}
-                </h1>
-            </Box>
-            <p>It identifies potential tranactions between two participants - Enter fields below and click Refresh to get data</p>
-            <Box style={{ display: 'flex' }} mt={4}>
-                <Box mt={2.38}>
-                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                        <KeyboardDatePicker
-                            disableToolbar
-                            variant="inline"
-                            format="yyyy-MM-dd"
-                            id="start-date"
-                            lable="Start Date"
-                            value={startDate}
-                            onChange={handleStartDateChange}
-                            KeyboardButtonProps={{
-                                'aria-label': 'change date'
-                            }}
-                            size='small'
-                            style={{ width: 150 }}
-                        />
-                        <KeyboardDatePicker
-                            disableToolbar
-                            variant="inline"
-                            format="yyyy-MM-dd"
-                            id="end-date"
-                            lable="End Date"
-                            value={endDate}
-                            onChange={handleEndDateChange}
-                            KeyboardButtonProps={{
-                                'aria-label': 'change date'
-                            }}
-                            size='small'
-                            style={{ width: 150 }}
-                        />
-                    </MuiPickersUtilsProvider>
+        <div className="App-main">
+            <Container>
+                <Box mt={3}>
+                    <h1>Transaction Finder <IconButton onClick={clickRefreshButton}><RefreshIcon></RefreshIcon></IconButton>
+                        {isRequested ? <CircularProgress></CircularProgress> : <p></p>}
+                    </h1>
                 </Box>
-                <Tooltip title={<span>HKEX Stock Codes - ex. 00001, 00002 etc</span>}>
-                    <TextField
-                        id="stockCode"
-                        label="Stock Code"
-                        style={{ width: 100 }}
-                        value={stockCode}
-                        onChange={handleStockCodeChange}>
-                    </TextField>
-                </Tooltip>
-                <Tooltip title={<span>The minimum % of the shares exchanged</span>}>
-                    <TextField
-                        id="threshold"
-                        label="% Threshold"
-                        style={{ width: 100 }}
-                        value={threshold}
-                        onChange={handleThresholdChange}>
-                    </TextField>
-                </Tooltip>
-            </Box>
-            <Box mt={4}>
-                <b>Potential Transactions</b>
-                <br></br><br></br>
-                <div style={{ height: 400, width: '100%' }} className={classes.root}>
-                    <DataGrid rows={transactionData} columns={columns2} pageSize={20} />
-                </div>
-            </Box>
-            <Box mt={4}>
-                <b>Participants who increase or decrease more than {threshold} % of the shares in a day</b>
-                <br></br><br></br>
-                <div style={{ height: 600, width: '100%' }} className={classes.root}>
-                    <DataGrid rows={allTransactionData} columns={columns} pageSize={20} />
-                </div>
-            </Box>
-        </Container>
+                <p>It identifies potential tranactions between two participants - Enter fields below and click Refresh to get data</p>
+                <Box style={{ display: 'flex' }} mt={4}>
+                    <Box mt={2.38}>
+                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                            <KeyboardDatePicker
+                                disableToolbar
+                                variant="inline"
+                                format="yyyy-MM-dd"
+                                id="start-date"
+                                lable="Start Date"
+                                value={startDate}
+                                onChange={handleStartDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date'
+                                }}
+                                size='small'
+                                style={{ width: 150 }}
+                            />
+                            <KeyboardDatePicker
+                                disableToolbar
+                                variant="inline"
+                                format="yyyy-MM-dd"
+                                id="end-date"
+                                lable="End Date"
+                                value={endDate}
+                                onChange={handleEndDateChange}
+                                KeyboardButtonProps={{
+                                    'aria-label': 'change date'
+                                }}
+                                size='small'
+                                style={{ width: 150 }}
+                            />
+                        </MuiPickersUtilsProvider>
+                    </Box>
+                    <Tooltip title={<span>HKEX Stock Codes - ex. 00001, 00002 etc</span>}>
+                        <TextField
+                            id="stockCode"
+                            label="Stock Code"
+                            style={{ width: 100 }}
+                            value={stockCode}
+                            onChange={handleStockCodeChange}>
+                        </TextField>
+                    </Tooltip>
+                    <Tooltip title={<span>The minimum % of the shares exchanged</span>}>
+                        <TextField
+                            id="threshold"
+                            label="% Threshold"
+                            style={{ width: 100 }}
+                            value={threshold}
+                            onChange={handleThresholdChange}>
+                        </TextField>
+                    </Tooltip>
+                </Box>
+                <Box mt={4}>
+                    <b>Potential Transactions</b>
+                    <br></br><br></br>
+                    <div style={{ height: 400, width: '100%' }} className={classes.root}>
+                        <DataGrid rows={transactionData} columns={columns2} pageSize={20} />
+                    </div>
+                </Box>
+                <Box mt={4}>
+                    <b>Participants who increase or decrease more than {threshold} % of the shares in a day</b>
+                    <br></br><br></br>
+                    <div style={{ height: 600, width: '100%' }} className={classes.root}>
+                        <DataGrid rows={allTransactionData} columns={columns} pageSize={20} />
+                    </div>
+                </Box>
+            </Container>
+        </div>
     );
 };

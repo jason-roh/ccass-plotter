@@ -1,29 +1,28 @@
-from services.hkex_web_service import HkexWebService
 from datetime import datetime, date
-from utils.datetime_utils import daterange
 import itertools
+from abc import ABC, abstractmethod
+from concurrent.futures import ThreadPoolExecutor, as_completed
+from utils.datetime_utils import daterange
+from services.hkex_web_service import HkexWebService
 
-class HolderDataSerivce():
+
+class HolderDataService(ABC):
     def __init__(self):
         self.web_service = HkexWebService()
         self.current_date = date.today().strftime("%Y%m%d")
-
+        self.holders_data = []
+    
+    @abstractmethod
     def get_all_holders_data(self, stock_code, start_date, end_date) -> [dict]:
-        holders_data = []
+        pass 
 
+    @staticmethod
+    def get_date_range(start_date, end_date):
         start_date = start_date.replace('-', '')
         end_date = end_date.replace('-', '')
         start = datetime.strptime(start_date, '%Y%m%d')
         end = datetime.strptime(end_date, '%Y%m%d')
-
-        for single_date in daterange(start, end):
-            shareholding_date = single_date.strftime("%Y/%m/%d")
-            print("Requsting holder data on {}".format(shareholding_date))
-            holders_data.append(
-                self.web_service.get_shareholding_data(self.current_date, stock_code, shareholding_date)
-            )
-        
-        return holders_data
+        return daterange(start, end)
 
     def get_top_holders(self, number_of_holders, stock_code, shareholding_date) -> dict:
         shareholding_data = self.web_service.get_shareholding_data(
@@ -39,3 +38,45 @@ class HolderDataSerivce():
             "StockCode": shareholding_data['StockCode'],
             "Holders": top_holders
         }
+
+
+class HolderDataSerivceSingle(HolderDataService):
+    def __init__(self):
+        super(HolderDataSerivceSingle, self).__init__()
+
+    def get_all_holders_data(self, stock_code, start_date, end_date) -> [dict]:
+        for single_date in HolderDataService.get_date_range(start_date, end_date):
+            shareholding_date = single_date.strftime("%Y/%m/%d")
+            self.holders_data.append(
+                self.web_service.get_shareholding_data(self.current_date, stock_code, shareholding_date)
+            )
+            print("Processed holder data on {}".format(shareholding_date))
+        
+        return self.holders_data
+
+
+class HolderDataSerivceMulti(HolderDataService):
+    def __init__(self):
+        super(HolderDataSerivceMulti, self).__init__()
+
+    def _process_holders_data(self, stock_code, single_date):
+        try:
+            shareholding_date = single_date.strftime("%Y/%m/%d")
+            self.holders_data.append(
+                self.web_service.get_shareholding_data(self.current_date, stock_code, shareholding_date)
+            )
+            return "Processed holder data on {}".format(shareholding_date)
+        except Exception as e:
+            return e
+
+    def get_all_holders_data(self, stock_code, start_date, end_date) -> [dict]:
+        threads = []
+
+        with ThreadPoolExecutor(max_workers=20) as executor:
+            for single_date in HolderDataService.get_date_range(start_date, end_date):
+                threads.append(executor.submit(self._process_holders_data, stock_code, single_date))
+
+            for task in as_completed(threads):
+                print(task.result()) 
+                
+            return self.holders_data

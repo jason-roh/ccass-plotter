@@ -1,4 +1,4 @@
-const BLUE_COLOR = "#1a237e";
+const BLUE_COLOR = "#000062"; 
 const WHITE_COLOR = "#FFFFFF";
 const TAB_NAME_HISTORICAL_HOLDINGS = 'Holdings';
 const TAB_NAME_TRANSCATIONS = 'Transactions';

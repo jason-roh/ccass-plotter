@@ -1,10 +1,10 @@
 from datetime import datetime
-from services.holder_data_service import HolderDataSerivce
+from services.holder_data_service import HolderDataSerivceSingle, HolderDataSerivceMulti
 from services.chart_data_service import ChartDataService
 
 class CcassPlotterService(object):
     def __init__(self):
-        self.holder_data_service = HolderDataSerivce()
+        pass
 
     @staticmethod
     def get_holding(participant_id, holdings_dict) -> dict:
@@ -38,7 +38,7 @@ class CcassPlotterService(object):
                 row_id = row_id + 1
         return holding_data
 
-    def _create_top_holdings_data(self, number_of_holders, stock_code, start_date, end_date) -> dict:
+    def _create_top_holdings_data(self, holder_service, number_of_holders, stock_code, start_date, end_date) -> dict:
         """
         Find historical holdings data of top holders as of End Date
         :param number_of_holders: Number of holders
@@ -49,26 +49,28 @@ class CcassPlotterService(object):
         """
 
         # 1. Iterate over the date ranges to find shareholdings
-        all_holders_data = self.holder_data_service.get_all_holders_data(stock_code, start_date, end_date)
+        all_holders_data = holder_service.get_all_holders_data(stock_code, start_date, end_date)
 
         # 2. find the top holders of a stock code as of end date
-        top_holders = self.holder_data_service.get_top_holders(int(number_of_holders), stock_code, end_date)
+        top_holders = holder_service.get_top_holders(int(number_of_holders), stock_code, end_date)
         
         # 3. Filtering out with top holders and create Grid data
         top_holders['Holdings'] = CcassPlotterService.filter_and_create_grid_data(all_holders_data, top_holders)
 
         return top_holders
     
-    def get_historical_holdings(self, number_of_holders, stock_code, start_date, end_date) -> dict:
-        historical_holdings = self._create_top_holdings_data(number_of_holders, stock_code, start_date, end_date)
+    def get_historical_holdings(self, number_of_holders, stock_code, start_date, end_date, multi) -> dict:
+        holder_service = HolderDataSerivceMulti() if multi else HolderDataSerivceSingle()
+        historical_holdings = self._create_top_holdings_data(holder_service, number_of_holders, stock_code, start_date, end_date)
         chart_data = ChartDataService.create_chart_data(historical_holdings)
         return {
             "Result": historical_holdings,
             "Chart": chart_data
         }
 
-    def find_transactions(self, threshold, stock_code, start_date, end_date) -> dict:
-        historical_holdings = self._create_top_holdings_data(10, stock_code, start_date, end_date)
+    def find_transactions(self, threshold, stock_code, start_date, end_date, multi) -> dict:
+        holder_service = HolderDataSerivceMulti() if multi else HolderDataSerivceSingle()
+        historical_holdings = self._create_top_holdings_data(holder_service, 10, stock_code, start_date, end_date)
 
         # calculate daily changes
         for holder in historical_holdings['Holders']:
