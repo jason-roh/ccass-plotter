@@ -2,8 +2,6 @@ from flask import Blueprint, request, jsonify
 from services.ccass_plotter_service import CcassPlotterService
 import json
 
-from test.test_multithreading import WebRequestSingle, WebRequestMulti
-
 bp = Blueprint('', __name__)
 
 
@@ -19,12 +17,6 @@ def healthcheck() -> str:
     :return: a dummy string
     """
     return json.dumps("success")
-
-
-@bp.route('/api/testMulti')
-def test_multi() -> str:
-    return json.dumps(WebRequestMulti().run())
-
 
 
 @bp.route("/api/getHistoricalHoldings")
