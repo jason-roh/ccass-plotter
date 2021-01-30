@@ -7,3 +7,5 @@ def create_app():
     CORS(app)
     app.register_blueprint(controller.bp)
     return app
+
+app = create_app()

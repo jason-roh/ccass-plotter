@@ -1,8 +1,10 @@
 import React, { useState } from 'react'
-import { AppBar, makeStyles, Tab, Toolbar, Typography, Box, Tabs } from '@material-ui/core';
+import { AppBar, makeStyles, Tab, Toolbar, Typography, Box, Tabs, IconButton } from '@material-ui/core';
 import HistoricalHoldings from './views/HistoricalHoldings';
 import Transactions from './views/Transactions';
 import { BLUE_COLOR, WHITE_COLOR, TAB_NAME_TRANSCATIONS, TAB_NAME_HISTORICAL_HOLDINGS } from './common/Constants';
+import CheckIcon from '@material-ui/icons/Check';
+import { getAsyncHealthCheck } from './common/CcassPlotService';
 
 const tabStyles = makeStyles({
   default_tab: {
@@ -49,13 +51,24 @@ export default function CcassPlotter(props) {
     }
   };
 
+  const clickCheckButton = () => {
+    getAsyncHealthCheck().then(result => {
+        console.log(result);
+        alert(result);
+    }).catch(rejected => {
+        console.log(rejected);
+    });
+  }
+
   return (
     <div>
       <AppBar position="static">
         <Toolbar variant="dense" style={{ background: WHITE_COLOR }}>
           <Box style={{ width: '100%' }}>
-            <Typography variant="h6" style={{ float: 'left', margin: '8px', fontWeight: 600, color: BLUE_COLOR }}>
-              CCASS PLOTTER
+            <Typography
+              variant="h6"
+              style={{ float: 'left', marginRight: '8px', marginTop: '8px', fontWeight: 600, color: BLUE_COLOR }}>
+              <IconButton onClick={clickCheckButton}><CheckIcon style={{ fontSize: 'small' }}></CheckIcon></IconButton>CCASS PLOTTER
             </Typography>
             <Tabs TabIndicatorProps={{ style: { background: BLUE_COLOR } }} value={tabIndex} onChange={handleTabChange}>
               {tabNames.map((tab, i) => <Tab
