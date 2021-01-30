@@ -1,0 +1,149 @@
+{
+    "Result": [
+        {
+            "id": 60,
+            "AsOf": "2020/12/28",
+            "ParticipantId": "B01161",
+            "Name": "UBS SECURITIES HONG KONG LTD",
+            "Shareholding": 16436443,
+            "Percent": 0.31,
+            "ShareholdingChange": 178065,
+            "ShareholdingChangeInPercent": 1.0952199536755758,
+            "Side": "BUY"
+        },
+        {
+            "id": 67,
+            "AsOf": "2020/12/29",
+            "ParticipantId": "C00074",
+            "Name": "DEUTSCHE BANK AG",
+            "Shareholding": 26875936,
+            "Percent": 0.51,
+            "ShareholdingChange": 422770,
+            "ShareholdingChangeInPercent": 1.5981829925385869,
+            "Side": "BUY"
+        },
+        {
+            "id": 70,
+            "AsOf": "2020/12/29",
+            "ParticipantId": "B01161",
+            "Name": "UBS SECURITIES HONG KONG LTD",
+            "Shareholding": 16689043,
+            "Percent": 0.32,
+            "ShareholdingChange": 252600,
+            "ShareholdingChangeInPercent": 1.5368288625464768,
+            "Side": "BUY"
+        },
+        {
+            "id": 69,
+            "AsOf": "2020/12/29",
+            "ParticipantId": "B01451",
+            "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+            "Shareholding": 16810968,
+            "Percent": 0.32,
+            "ShareholdingChange": -397700,
+            "ShareholdingChangeInPercent": -2.3110446433157987,
+            "Side": "SELL"
+        },
+        {
+            "id": 79,
+            "AsOf": "2020/12/30",
+            "ParticipantId": "B01451",
+            "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+            "Shareholding": 17247067,
+            "Percent": 0.33,
+            "ShareholdingChange": 436099,
+            "ShareholdingChangeInPercent": 2.594133782183156,
+            "Side": "BUY"
+        },
+        {
+            "id": 75,
+            "AsOf": "2020/12/30",
+            "ParticipantId": "B01130",
+            "Name": "BOCI SECURITIES LTD",
+            "Shareholding": 31771283,
+            "Percent": 0.61,
+            "ShareholdingChange": 497600,
+            "ShareholdingChangeInPercent": 1.5911141645836853,
+            "Side": "BUY"
+        },
+        {
+            "id": 80,
+            "AsOf": "2020/12/30",
+            "ParticipantId": "B01161",
+            "Name": "UBS SECURITIES HONG KONG LTD",
+            "Shareholding": 15721426,
+            "Percent": 0.3,
+            "ShareholdingChange": -967617,
+            "ShareholdingChangeInPercent": -5.797917831477815,
+            "Side": "SELL"
+        }
+    ],
+    "Transactions": [
+        {
+            "id": 67,
+            "AsOf": "2020/12/29",
+            "ParticipantId": "C00074",
+            "Name": "DEUTSCHE BANK AG",
+            "Shareholding": 26875936,
+            "Percent": 0.51,
+            "ShareholdingChange": 422770,
+            "ShareholdingChangeInPercent": 1.5981829925385869,
+            "Side": "BUY"
+        },
+        {
+            "id": 69,
+            "AsOf": "2020/12/29",
+            "ParticipantId": "B01451",
+            "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+            "Shareholding": 16810968,
+            "Percent": 0.32,
+            "ShareholdingChange": -397700,
+            "ShareholdingChangeInPercent": -2.3110446433157987,
+            "Side": "SELL"
+        },
+        {
+            "id": 70,
+            "AsOf": "2020/12/29",
+            "ParticipantId": "B01161",
+            "Name": "UBS SECURITIES HONG KONG LTD",
+            "Shareholding": 16689043,
+            "Percent": 0.32,
+            "ShareholdingChange": 252600,
+            "ShareholdingChangeInPercent": 1.5368288625464768,
+            "Side": "BUY"
+        },
+        {
+            "id": 75,
+            "AsOf": "2020/12/30",
+            "ParticipantId": "B01130",
+            "Name": "BOCI SECURITIES LTD",
+            "Shareholding": 31771283,
+            "Percent": 0.61,
+            "ShareholdingChange": 497600,
+            "ShareholdingChangeInPercent": 1.5911141645836853,
+            "Side": "BUY"
+        },
+        {
+            "id": 79,
+            "AsOf": "2020/12/30",
+            "ParticipantId": "B01451",
+            "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+            "Shareholding": 17247067,
+            "Percent": 0.33,
+            "ShareholdingChange": 436099,
+            "ShareholdingChangeInPercent": 2.594133782183156,
+            "Side": "BUY"
+        },
+        {
+            "id": 80,
+            "AsOf": "2020/12/30",
+            "ParticipantId": "B01161",
+            "Name": "UBS SECURITIES HONG KONG LTD",
+            "Shareholding": 15721426,
+            "Percent": 0.3,
+            "ShareholdingChange": -967617,
+            "ShareholdingChangeInPercent": -5.797917831477815,
+            "Side": "SELL"
+        }
+    ]
+}
