@@ -10,7 +10,7 @@ def home() -> str:
     return "This is backend of CCASS Plotter"
 
 
-@bp.route('/healthcheck')
+@bp.route('/api/healthcheck')
 def healthcheck() -> str:
     """
     Healthcheck endpoint
@@ -19,7 +19,7 @@ def healthcheck() -> str:
     return json.dumps("success")
 
 
-@bp.route("/getHistoricalHoldings")
+@bp.route("/api/getHistoricalHoldings")
 def get_historical_holdings():
     stock_code = request.args['StockCode']
     start_date = request.args['StartDate']
@@ -29,7 +29,7 @@ def get_historical_holdings():
     return json.dumps(result)
 
 
-@bp.route("/findTransactions")
+@bp.route("/api/findTransactions")
 def find_transactions():
     stock_code = request.args['StockCode']
     start_date = request.args['StartDate']
