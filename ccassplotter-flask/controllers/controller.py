@@ -16,7 +16,7 @@ def healthcheck() -> str:
     Healthcheck endpoint
     :return: a dummy string
     """
-    return "success"
+    return json.dumps("success")
 
 
 @bp.route("/getHistoricalHoldings")
