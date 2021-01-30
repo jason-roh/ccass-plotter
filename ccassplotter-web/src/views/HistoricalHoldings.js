@@ -86,7 +86,7 @@ export default function HistoricalHoldings(props) {
         }
 
         setIsRequested(true);
-        getAsyncHistoricalHoldings(numberOfHolders, stockCode, formatDate(startDate), formatDate(endDate)).then(result => {
+        getAsyncHistoricalHoldings(numberOfHolders, stockCode, formatDate(startDate), formatDate(endDate), props.isMulti).then(result => {
             GridData = result['Result']['Holdings'];
             ChartData = result['Chart'];
             setTopHoldersAsOf(result['Result']['TopHoldersAsOf']);

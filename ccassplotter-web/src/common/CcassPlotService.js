@@ -9,23 +9,25 @@ const getQueryString = (params) => {
     }).join('&');
 };
 
-const getAsyncHistoricalHoldings = async (numberOfHolders, stockCode, startDate, endDate) => {
+const getAsyncHistoricalHoldings = async (numberOfHolders, stockCode, startDate, endDate, isMulti) => {
     const url = getHistoricalHoldingsUrl + '?' + getQueryString({
         NumberOfHolders: numberOfHolders,
         StockCode: stockCode,
         StartDate: startDate,
-        EndDate: endDate
+        EndDate: endDate,
+        IsMulti: isMulti
     });
 
     return (await fetch(url)).json();
 };
 
-const getAsyncFindTransactions = async (threshold, stockCode, startDate, endDate) => {
+const getAsyncFindTransactions = async (threshold, stockCode, startDate, endDate, isMulti) => {
     const url = getFindTransactionsUrl + '?' + getQueryString({
         Threshold: threshold,
         StockCode: stockCode,
         StartDate: startDate,
-        EndDate: endDate
+        EndDate: endDate,
+        IsMulti: isMulti
     });
 
     return (await fetch(url)).json();

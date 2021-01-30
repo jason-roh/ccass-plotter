@@ -102,7 +102,7 @@ export default function HistoricalHoldings(props) {
         }
 
         setIsRequested(true);
-        getAsyncFindTransactions(threshold, stockCode, formatDate(startDate), formatDate(endDate)).then(result => {
+        getAsyncFindTransactions(threshold, stockCode, formatDate(startDate), formatDate(endDate), props.isMulti).then(result => {
             setTransactionData(result['Transactions']);
             setAllTransactionData(result['Result']);
             setIsRequested(false);

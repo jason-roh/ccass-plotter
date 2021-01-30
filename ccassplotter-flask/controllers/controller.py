@@ -25,7 +25,7 @@ def get_historical_holdings():
     start_date = request.args['StartDate']
     end_date = request.args['EndDate']
     number_of_holders = request.args['NumberOfHolders']
-    multi = request.args['Multi'] in ['true', 'True']
+    multi = request.args['IsMulti'] in ['true', 'True']
     result = CcassPlotterService().get_historical_holdings(number_of_holders, stock_code, start_date, end_date, multi)
     return json.dumps(result)
 
@@ -36,6 +36,6 @@ def find_transactions():
     start_date = request.args['StartDate']
     end_date = request.args['EndDate']
     threshold = request.args['Threshold']
-    multi = request.args['Multi'] in ['true', 'True']
+    multi = request.args['IsMulti'] in ['true', 'True']
     result = CcassPlotterService().find_transactions(threshold, stock_code, start_date, end_date, multi)
     return json.dumps(result)
