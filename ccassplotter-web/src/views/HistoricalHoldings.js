@@ -6,12 +6,51 @@ import Tooltip from '@material-ui/core/Tooltip'
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import RefreshIcon from '@material-ui/icons/Refresh';
+import { ResponsiveLine } from '@nivo/line'
+import NumberFormat from "react-number-format";
 import { getAsyncHistoricalHoldings } from '../common/CcassPlotService';
 import { formatDate, addDays, validateInput, createString } from "../common/Utils";
-import { ResponsiveLine } from '@nivo/line'
+import { sampleData } from "../test/SampleData";
 
-let ChartData = [];
-let GridData = [];
+/**
+ * Initial values
+ */
+let ChartData = sampleData['Chart'];
+let minValue = sampleData['Chart']['Min'];
+let maxValue = sampleData['Chart']['Max'];
+let holdersList = sampleData['Result']['Holders'];
+let TopHoldingsData = [];
+
+const findMinMax = (positions) => {
+    const buffer = 100000;
+    var merged = [].concat.apply([], positions).map(x => x['y']);
+    const max = Math.max(...merged);
+    const min = Math.min(...merged);
+    return {
+        "Max": max + buffer,
+        "Min": Math.max(0, min - buffer)
+    }
+}
+
+function NumberFormatCustom(props) {
+    const { inputRef, onChange, ...other } = props;
+
+    return (
+        <NumberFormat
+            {...other}
+            getInputRef={inputRef}
+            onValueChange={values => {
+                onChange({
+                    target: {
+                        name: props.name,
+                        value: values.value
+                    }
+                });
+            }}
+            thousandSeparator
+        />
+    );
+}
 
 const columns = [
     { field: 'id', headerName: 'ID', hide: true },
@@ -32,10 +71,13 @@ export default function HistoricalHoldings(props) {
     const [isRequested, setIsRequested] = useState(false);
     const [topHoldersAsOf, setTopHoldersAsOf] = useState('');
     const [topHoldingsData, setTopHoldingsData] = useState([]);
-    const [chartData, setChartData] = useState([]);
     const [numberOfHolders, setNumberOfHolders] = useState(10);
     const [holderSelected, setHolderSelected] = useState('All');
-    const [holdersData, setHoldersData] = useState([]);
+    const [chartData, setChartData] = useState(ChartData);
+    const [min, setMin] = useState(minValue);
+    const [max, setMax] = useState(maxValue);
+    const [scale, setScale] = useState('log');
+    const [holdersData, setHoldersData] = useState(holdersList);
 
     const handleStockCodeChange = (event) => {
         setStockCode(event.target.value);
@@ -52,11 +94,31 @@ export default function HistoricalHoldings(props) {
         setHolderSelected(selectedHolder);
         if (selectedHolder === 'All') {
             setChartData(ChartData);
-            setTopHoldingsData(GridData);
+            setMin(ChartData['Min']);
+            setMax(ChartData['Max']);
+            setScale('log');
+            setTopHoldingsData(TopHoldingsData);
         } else {
-            setChartData(ChartData.filter(d => d['id'] === selectedHolder));
-            setTopHoldingsData(GridData.filter(d => d['Name'] === selectedHolder));
+            const selectedData = ChartData['Data'].filter(d => d['id'] === selectedHolder);
+            const result = findMinMax(selectedData[0]['data']);
+            setChartData({ "Data": selectedData });
+            setMin(result['Min']);
+            setMax(result['Max']);
+            setScale('linear');
+            setTopHoldingsData(TopHoldingsData.filter(d => d['Name'] === selectedHolder));
         }
+    };
+
+    const handleMinChange = (event) => {
+        setMin(parseInt(event.target.value));
+    };
+
+    const handleMaxChange = (event) => {
+        setMax(parseInt(event.target.value));
+    };
+
+    const handleScaleChange = (event) => {
+        setScale(event.target.value);
     };
 
     const handleStartDateChange = (date) => {
@@ -74,8 +136,8 @@ export default function HistoricalHoldings(props) {
         setTopHoldingsData([]);
         setChartData([]);
         setHolderSelected('All');
-        ChartData = [];
-        GridData = [];
+        ChartData = {};
+        TopHoldingsData = [];
     };
 
     const clickRefreshButton = () => {
@@ -89,12 +151,15 @@ export default function HistoricalHoldings(props) {
         getAsyncHistoricalHoldings(numberOfHolders, stockCode, formatDate(startDate), formatDate(endDate), props.isMulti).then(result => {
             if (result['Result'] === undefined) throw result;
 
-            GridData = result['Result']['Holdings'];
+            TopHoldingsData = result['Result']['Holdings'];
             ChartData = result['Chart'];
+
             setTopHoldersAsOf(result['Result']['TopHoldersAsOf']);
-            setTopHoldingsData(GridData);
-            setChartData(ChartData);
             setHoldersData(result['Result']['Holders']);
+            setTopHoldingsData(TopHoldingsData);
+            setChartData(ChartData);
+            setMin(ChartData['Min']);
+            setMax(ChartData['Max']);
             setIsRequested(false);
         }).catch(rejected => {
             setIsRequested(false);
@@ -179,13 +244,44 @@ export default function HistoricalHoldings(props) {
                         {holdersData.map(k => <MenuItem key={k['Name']} value={k['Name']}>{k['Name']}</MenuItem>)}
                     </TextField>
                 </Tooltip>
+                <TextField
+                    id="min"
+                    label="Min"
+                    style={{ width: 150 }}
+                    value={min}
+                    onChange={handleMinChange}
+                    InputProps={{
+                        inputComponent: NumberFormatCustom
+                    }}
+                >
+                </TextField>
+                <TextField
+                    id="max"
+                    label="Max"
+                    style={{ width: 150 }}
+                    value={max}
+                    onChange={handleMaxChange}
+                    InputProps={{
+                        inputComponent: NumberFormatCustom
+                    }}
+                >
+                </TextField>
+                <TextField
+                    id="scale"
+                    label="Scale"
+                    style={{ width: 100 }}
+                    value={scale}
+                    onChange={handleScaleChange} select>
+                    <MenuItem key="linear" value="linear">Linear</MenuItem>
+                    <MenuItem key="log" value="log">Log</MenuItem>
+                </TextField>
                 <Box style={{ height: 500 }}>
                     <ResponsiveLine
-                        data={chartData}
+                        data={chartData['Data']}
                         colors={{ 'scheme': 'category10' }}
-                        margin={{ top: 20, right: 40, bottom: 50, left: 110 }}
+                        margin={{ top: 50, right: 40, bottom: 50, left: 110 }}
                         xScale={{ type: 'point' }}
-                        yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
+                        yScale={{ type: scale, min: min, max: max, stacked: false, reverse: false }}
                         yFormat=" >-,.0f"
                         theme={{
                             grid: {
