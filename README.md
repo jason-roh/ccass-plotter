@@ -18,12 +18,12 @@ ccassplotter-flask/requirements.txt
 ```
 npm install
 ```
-3. Start react-app 
-```
-npm run start:local-mac
-```
-4. react-spring patch due to known issue with Gatsby
+3. react-spring patch due to known issue with Gatsby
 https://github.com/pmndrs/react-spring/issues/1078
 ```
 npm run react-spring-issue-1078
+```
+4. Start react-app
+```
+npm run start:local-mac
 ```
