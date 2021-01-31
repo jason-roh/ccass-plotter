@@ -118,6 +118,10 @@ class CcassPlotterService(object):
                 holdings_with_transactions.extend(holdings_per_as_of)
                 
         return {
-            "Result": holdings_with_change,
+            "StockCode": stock_code,
+            "StartDate": start_date,
+            "EndDate": end_date,
+            "Threshold": threshold,
+            "HoldingChanges": holdings_with_change,
             "Transactions": holdings_with_transactions
         }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, TextField, Box, CircularProgress, IconButton } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
-import { formatDate, addDays, validateInput, createString } from "../common/Utils"
+import { formatDate, validateInput, createString } from "../common/Utils"
 import Tooltip from '@material-ui/core/Tooltip'
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
@@ -9,6 +9,8 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import { getAsyncFindTransactions } from '../common/CcassPlotService';
 import { makeStyles } from '@material-ui/core/styles';
 import clsx from 'clsx';
+import { transactionSampleData } from '../test/SampleData';
+
 
 const useStyles = makeStyles({
     root: {
@@ -56,18 +58,15 @@ const columns2 = [
     },
 ];
 
-export default function HistoricalHoldings(props) {
+export default function Transactions(props) {
     const classes = useStyles();
-    const today = new Date();
-    const yesterday = addDays(today, -1);
-    const oneWeekAgo = addDays(today, -5);
     const [isRequested, setIsRequested] = useState(false);
-    const [stockCode, setStockCode] = useState('');
-    const [startDate, setStartDate] = useState(oneWeekAgo);
-    const [endDate, setEndDate] = useState(yesterday);
+    const [stockCode, setStockCode] = useState('00005');
+    const [startDate, setStartDate] = useState(new Date('2020/12/24'));
+    const [endDate, setEndDate] = useState(new Date('2020/12/31'));
     const [threshold, setThreshold] = useState(1.0);
-    const [allTransactionData, setAllTransactionData] = useState([]);
-    const [transactionData, setTransactionData] = useState([]);
+    const [allTransactionData, setAllTransactionData] = useState(transactionSampleData['HoldingChanges']);
+    const [transactionData, setTransactionData] = useState(transactionSampleData['Transactions']);
 
     const handleStockCodeChange = (event) => {
         setStockCode(event.target.value);

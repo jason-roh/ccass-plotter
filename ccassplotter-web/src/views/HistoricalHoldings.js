@@ -9,17 +9,17 @@ import RefreshIcon from '@material-ui/icons/Refresh';
 import { ResponsiveLine } from '@nivo/line'
 import NumberFormat from "react-number-format";
 import { getAsyncHistoricalHoldings } from '../common/CcassPlotService';
-import { formatDate, addDays, validateInput, createString } from "../common/Utils";
-import { sampleData } from "../test/SampleData";
+import { formatDate, validateInput, createString } from "../common/Utils";
+import { sampleHoldingData } from "../test/SampleData";
 
 /**
- * Initial values
+ * Initial Sample Data
  */
-let ChartData = sampleData['Chart'];
-let minValue = sampleData['Chart']['Min'];
-let maxValue = sampleData['Chart']['Max'];
-let holdersList = sampleData['Result']['Holders'];
-let TopHoldingsData = [];
+let ChartData = sampleHoldingData['Chart'];
+let minValue = sampleHoldingData['Chart']['Min'];
+let maxValue = sampleHoldingData['Chart']['Max'];
+let holdersList = sampleHoldingData['Result']['Holders'];
+let TopHoldingsData = sampleHoldingData['Result']['Holdings'];
 
 const findMinMax = (positions) => {
     const buffer = 100000;
@@ -62,15 +62,12 @@ const columns = [
 ];
 
 export default function HistoricalHoldings(props) {
-    const today = new Date();
-    const yesterday = addDays(today, -1);
-    const oneWeekAgo = addDays(today, -5);
-    const [stockCode, setStockCode] = useState('');
-    const [startDate, setStartDate] = useState(oneWeekAgo);
-    const [endDate, setEndDate] = useState(yesterday);
+    const [stockCode, setStockCode] = useState('01128');
+    const [startDate, setStartDate] = useState(new Date('2020/12/24'));
+    const [endDate, setEndDate] = useState(new Date('2020/12/31'));
     const [isRequested, setIsRequested] = useState(false);
-    const [topHoldersAsOf, setTopHoldersAsOf] = useState('');
-    const [topHoldingsData, setTopHoldingsData] = useState([]);
+    const [topHoldersAsOf, setTopHoldersAsOf] = useState('2020/12/31');
+    const [topHoldingsData, setTopHoldingsData] = useState(TopHoldingsData);
     const [numberOfHolders, setNumberOfHolders] = useState(10);
     const [holderSelected, setHolderSelected] = useState('All');
     const [chartData, setChartData] = useState(ChartData);
@@ -134,7 +131,7 @@ export default function HistoricalHoldings(props) {
     const ClearData = () => {
         setTopHoldersAsOf('');
         setTopHoldingsData([]);
-        setChartData([]);
+        setChartData({'Data': []});
         setHolderSelected('All');
         ChartData = {};
         TopHoldingsData = [];
