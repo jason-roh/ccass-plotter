@@ -180,6 +180,7 @@ export default function Transactions(props) {
             <Box mt={8}>
                 <b>Potential Transactions</b>
                 <br></br><br></br>
+                <p style={{fontSize: '12px'}}>*Click Column Header to Sort or Column Menu to Filter</p>
                 <div style={{ height: 400, width: '100%', margin: 0 }} className={classes.root}>
                     <DataGrid density="compact" rows={transactionData} columns={columns2} autoPageSize={true} />
                 </div>
@@ -187,6 +188,7 @@ export default function Transactions(props) {
             <Box mt={8} mb={10}>
                 <b>Participants who increase or decrease more than {threshold} % of the shares in a day</b>
                 <br></br><br></br>
+                <p style={{fontSize: '12px'}}>*Click Column Header to Sort or Column Menu to Filter</p>
                 <div style={{ height: 600, width: '100%', margin: 0 }} className={classes.root}>
                     <DataGrid density="compact" rows={allTransactionData} columns={columns} autoPageSize={true} />
                 </div>

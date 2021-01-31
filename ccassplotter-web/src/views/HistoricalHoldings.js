@@ -368,6 +368,7 @@ export default function HistoricalHoldings(props) {
             <Box mt={8} mb={10}>
                 <b>Historic Shareholdings of Top {numberOfHolders} Holders</b>
                 <br></br><br></br>
+                <p style={{fontSize: '12px'}}>*Click Column Header to Sort or Column Menu to Filter</p>
                 <div style={{ height: 600, width: '100%', margin: 0 }}>
                     <DataGrid density="compact" rows={topHoldingsData} columns={columns} autoPageSize={true} />
                 </div>
