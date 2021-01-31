@@ -115,15 +115,16 @@ export default function Transactions(props) {
     }
 
     return (
-        <div className="App-main">
-            <Container>
-                <Box mt={3}>
+        <Container>
+            <br></br><br></br>
+            <div className="App-main">
+                <Box>
                     <h1>Transaction Finder <IconButton onClick={clickRefreshButton}><RefreshIcon></RefreshIcon></IconButton>
                         {isRequested ? <CircularProgress></CircularProgress> : <p></p>}
                     </h1>
                 </Box>
                 <p>It identifies potential tranactions between two participants - Enter fields below and click Refresh to get data</p>
-                <Box style={{ display: 'flex' }} mt={4}>
+                <Box style={{ display: 'flex' }} mt={4} mb={3}>
                     <Box mt={2.38}>
                         <MuiPickersUtilsProvider utils={DateFnsUtils}>
                             <KeyboardDatePicker
@@ -175,21 +176,23 @@ export default function Transactions(props) {
                         </TextField>
                     </Tooltip>
                 </Box>
-                <Box mt={4}>
-                    <b>Potential Transactions</b>
-                    <br></br><br></br>
-                    <div style={{ height: 400, width: '100%' }} className={classes.root}>
-                        <DataGrid rows={transactionData} columns={columns2} pageSize={20} />
-                    </div>
-                </Box>
-                <Box mt={4}>
-                    <b>Participants who increase or decrease more than {threshold} % of the shares in a day</b>
-                    <br></br><br></br>
-                    <div style={{ height: 600, width: '100%' }} className={classes.root}>
-                        <DataGrid rows={allTransactionData} columns={columns} pageSize={20} />
-                    </div>
-                </Box>
-            </Container>
-        </div>
+            </div>
+            <Box mt={8}>
+                <b>Potential Transactions</b>
+                <br></br><br></br>
+                <p style={{fontSize: '12px'}}>*Click Column Header to Sort or Column Menu to Filter</p>
+                <div style={{ height: 400, width: '100%', margin: 0 }} className={classes.root}>
+                    <DataGrid density="compact" rows={transactionData} columns={columns2} autoPageSize={true} />
+                </div>
+            </Box>
+            <Box mt={8} mb={10}>
+                <b>Participants who increase or decrease more than {threshold} % of the shares in a day</b>
+                <br></br><br></br>
+                <p style={{fontSize: '12px'}}>*Click Column Header to Sort or Column Menu to Filter</p>
+                <div style={{ height: 600, width: '100%', margin: 0 }} className={classes.root}>
+                    <DataGrid density="compact" rows={allTransactionData} columns={columns} autoPageSize={true} />
+                </div>
+            </Box>
+        </Container>
     );
 };

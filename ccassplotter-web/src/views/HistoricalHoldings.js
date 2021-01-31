@@ -56,7 +56,7 @@ const columns = [
     { field: 'id', headerName: 'ID', hide: true },
     { field: 'AsOf', headerName: 'As Of', width: 130 },
     { field: 'ParticipantId', headerName: 'Participant ID', width: 150 },
-    { field: 'Name', headerName: 'Name', width: 550 },
+    { field: 'Name', headerName: 'Name', width: 450 },
     { field: 'Shareholding', headerName: 'Shareholding', width: 150, type: 'number' },
     { field: 'Percent', headerName: '%', width: 80, type: 'number' }
 ];
@@ -131,8 +131,11 @@ export default function HistoricalHoldings(props) {
     const ClearData = () => {
         setTopHoldersAsOf('');
         setTopHoldingsData([]);
-        setChartData({'Data': []});
+        setChartData({ 'Data': [] });
         setHolderSelected('All');
+        setHoldersData([]);
+        setMin(0);
+        setMax(0);
         ChartData = {};
         TopHoldingsData = [];
     };
@@ -167,111 +170,121 @@ export default function HistoricalHoldings(props) {
     }
 
     return (
-        <div className="App-main">
-            <Container>
-                <Box mt={3}>
-                    <h1>Trend Plot <IconButton onClick={clickRefreshButton}><RefreshIcon></RefreshIcon></IconButton>
-                        {isRequested ? <CircularProgress></CircularProgress> : <p></p>}
-                    </h1>
+        <Container>
+            <br></br><br></br>
+            <Box>
+                <h1>Trend Plot <IconButton onClick={clickRefreshButton}><RefreshIcon></RefreshIcon></IconButton>
+                    {isRequested ? <CircularProgress></CircularProgress> : <p></p>}
+                </h1>
+            </Box>
+            <p>It plots the "Shareholding" of the top participants as of the end date - Enter fields below and click Refresh to get data</p>
+            <Box style={{ display: 'flex' }} mt={4} mb={8}>
+                <Box mt={2.38}>
+                    <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                        <KeyboardDatePicker
+                            disableToolbar
+                            variant="inline"
+                            format="yyyy-MM-dd"
+                            id="start-date"
+                            lable="Start Date"
+                            value={startDate}
+                            onChange={handleStartDateChange}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date'
+                            }}
+                            size='small'
+                            style={{ width: 150 }}
+                        />
+                        <KeyboardDatePicker
+                            disableToolbar
+                            variant="inline"
+                            format="yyyy-MM-dd"
+                            id="end-date"
+                            lable="End Date"
+                            value={endDate}
+                            onChange={handleEndDateChange}
+                            KeyboardButtonProps={{
+                                'aria-label': 'change date'
+                            }}
+                            size='small'
+                            style={{ width: 150 }}
+                        />
+                    </MuiPickersUtilsProvider>
                 </Box>
-                <p>It plots the "Shareholding" of the top participants as of the end date - Enter fields below and click Refresh to get data</p>
-                <Box style={{ display: 'flex' }} mt={4}>
-                    <Box mt={2.38}>
-                        <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                            <KeyboardDatePicker
-                                disableToolbar
-                                variant="inline"
-                                format="yyyy-MM-dd"
-                                id="start-date"
-                                lable="Start Date"
-                                value={startDate}
-                                onChange={handleStartDateChange}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change date'
-                                }}
-                                size='small'
-                                style={{ width: 150 }}
-                            />
-                            <KeyboardDatePicker
-                                disableToolbar
-                                variant="inline"
-                                format="yyyy-MM-dd"
-                                id="end-date"
-                                lable="End Date"
-                                value={endDate}
-                                onChange={handleEndDateChange}
-                                KeyboardButtonProps={{
-                                    'aria-label': 'change date'
-                                }}
-                                size='small'
-                                style={{ width: 150 }}
-                            />
-                        </MuiPickersUtilsProvider>
-                    </Box>
-                    <Tooltip title={<span>HKEX Stock Codes - ex. 00001, 00002 etc</span>}>
-                        <TextField
-                            id="stockCode"
-                            label="Stock Code"
-                            style={{ width: 100 }}
-                            value={stockCode}
-                            onChange={handleStockCodeChange}>
-                        </TextField>
-                    </Tooltip>
-                    <Tooltip title={<span>Number Of Top Holders</span>}>
-                        <TextField
-                            id="topHolders"
-                            label="Top Holders"
-                            style={{ width: 100 }}
-                            value={numberOfHolders}
-                            onChange={handleNumberOfHolders}>
-                        </TextField>
-                    </Tooltip>
-                </Box>
-                <Box mt={6}>
-                    <b>Top {numberOfHolders} Participants As Of - {topHoldersAsOf}</b>
-                </Box>
-                <Tooltip title={<span>Select Holder To Update Chart</span>}>
+                <Tooltip title={<span>HKEX Stock Codes - ex. 00001, 00002 etc</span>}>
                     <TextField
-                        id="holder"
-                        label="Holder"
-                        style={{ width: 300 }}
-                        value={holderSelected}
-                        onChange={handleHolderSelected} select>
-                        <MenuItem key="All" value="All">All</MenuItem>
-                        {holdersData.map(k => <MenuItem key={k['Name']} value={k['Name']}>{k['Name']}</MenuItem>)}
+                        id="stockCode"
+                        label="Stock Code"
+                        style={{ width: 100 }}
+                        value={stockCode}
+                        onChange={handleStockCodeChange}>
                     </TextField>
                 </Tooltip>
-                <TextField
-                    id="min"
-                    label="Min"
-                    style={{ width: 150 }}
-                    value={min}
-                    onChange={handleMinChange}
-                    InputProps={{
-                        inputComponent: NumberFormatCustom
-                    }}
-                >
-                </TextField>
-                <TextField
-                    id="max"
-                    label="Max"
-                    style={{ width: 150 }}
-                    value={max}
-                    onChange={handleMaxChange}
-                    InputProps={{
-                        inputComponent: NumberFormatCustom
-                    }}
-                >
-                </TextField>
-                <TextField
-                    id="scale"
-                    label="Scale"
-                    style={{ width: 100 }}
-                    value={scale}
-                    onChange={handleScaleChange} select>
-                    <MenuItem key="linear" value="linear">Linear</MenuItem>
-                    <MenuItem key="log" value="log">Log</MenuItem>
-                </TextField>
+                <Tooltip title={<span>Number Of Top Holders</span>}>
+                    <TextField
+                        id="topHolders"
+                        label="Top Holders"
+                        style={{ width: 100 }}
+                        value={numberOfHolders}
+                        onChange={handleNumberOfHolders}>
+                    </TextField>
+                </Tooltip>
+            </Box>
+            <div className="App-main">
+                <Box mt={4} mb={4}>
+                    <b>Top {numberOfHolders} Participants As Of - {topHoldersAsOf}</b>
+                </Box>
+                <Box>
+                    <p style={{fontSize: '12px'}}>*Modify Holder, Min, Max and Scale to Adjust Chart</p>
+                    <Tooltip title={<span>Select Holder To Update Chart</span>}>
+                        <TextField
+                            id="holder"
+                            label="Holder"
+                            style={{ width: 300 }}
+                            value={holderSelected}
+                            onChange={handleHolderSelected} select>
+                            <MenuItem key="All" value="All">All</MenuItem>
+                            {holdersData.map(k => <MenuItem key={k['Name']} value={k['Name']}>{k['Name']}</MenuItem>)}
+                        </TextField>
+                    </Tooltip>
+                    <Tooltip title={<span>Minimum value of Y Axis</span>}>
+                        <TextField
+                            id="min"
+                            label="Min"
+                            style={{ width: 150 }}
+                            value={min}
+                            onChange={handleMinChange}
+                            InputProps={{
+                                inputComponent: NumberFormatCustom
+                            }}
+                        >
+                        </TextField>
+                    </Tooltip>
+                    <Tooltip title={<span>Maximum value of Y Axis</span>}>
+                        <TextField
+                            id="max"
+                            label="Max"
+                            style={{ width: 150 }}
+                            value={max}
+                            onChange={handleMaxChange}
+                            InputProps={{
+                                inputComponent: NumberFormatCustom
+                            }}
+                        >
+                        </TextField>
+                    </Tooltip>
+                    <Tooltip title={<span>Scale of Y Axis</span>}>
+                        <TextField
+                            id="scale"
+                            label="Scale"
+                            style={{ width: 100 }}
+                            value={scale}
+                            onChange={handleScaleChange} select>
+                            <MenuItem key="linear" value="linear">Linear</MenuItem>
+                            <MenuItem key="log" value="log">Log</MenuItem>
+                        </TextField>
+                    </Tooltip>
+                </Box>
                 <Box style={{ height: 500 }}>
                     <ResponsiveLine
                         data={chartData['Data']}
@@ -351,11 +364,15 @@ export default function HistoricalHoldings(props) {
                         ]}
                     />
                 </Box>
+            </div>
+            <Box mt={8} mb={10}>
+                <b>Historic Shareholdings of Top {numberOfHolders} Holders</b>
                 <br></br><br></br>
-                <div style={{ height: 600, width: '100%' }}>
-                    <DataGrid rows={topHoldingsData} columns={columns} pageSize={20} />
+                <p style={{fontSize: '12px'}}>*Click Column Header to Sort or Column Menu to Filter</p>
+                <div style={{ height: 600, width: '100%', margin: 0 }}>
+                    <DataGrid density="compact" rows={topHoldingsData} columns={columns} autoPageSize={true} />
                 </div>
-            </Container>
-        </div>
+            </Box>
+        </Container >
     );
 };
