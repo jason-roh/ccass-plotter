@@ -29,7 +29,7 @@ const columns = [
     { field: 'id', headerName: 'ID', hide: true },
     { field: 'AsOf', headerName: 'As Of', width: 130 },
     { field: 'ParticipantId', headerName: 'Participant ID', width: 150 },
-    { field: 'Name', headerName: 'Name', width: 400 },
+    { field: 'Name', headerName: 'Name', width: 450 },
     { field: 'Shareholding', headerName: 'Shareholding', width: 150, type: 'number' },
     { field: 'Percent', headerName: '%', width: 80, type: 'number' },
     { field: 'ShareholdingChange', headerName: 'Change', width: 130, type: 'number' },
@@ -47,7 +47,7 @@ const columns2 = [
     { field: 'id', headerName: 'ID', hide: true },
     { field: 'AsOf', headerName: 'As Of', width: 130 },
     { field: 'ParticipantId', headerName: 'Participant ID', width: 150 },
-    { field: 'Name', headerName: 'Name', width: 400 },
+    { field: 'Name', headerName: 'Name', width: 450 },
     {
         field: 'Side', headerName: 'Side', width: 150,
         cellClassName: (params) =>
@@ -180,15 +180,15 @@ export default function Transactions(props) {
             <Box mt={8}>
                 <b>Potential Transactions</b>
                 <br></br><br></br>
-                <div style={{ height: 400, width: 850 }} className={classes.root}>
-                    <DataGrid rows={transactionData} columns={columns2} pageSize={20} />
+                <div style={{ height: 400, width: '100%', margin: 0 }} className={classes.root}>
+                    <DataGrid density="compact" rows={transactionData} columns={columns2} autoPageSize={true} />
                 </div>
             </Box>
-            <Box mt={8}>
+            <Box mt={8} mb={10}>
                 <b>Participants who increase or decrease more than {threshold} % of the shares in a day</b>
                 <br></br><br></br>
-                <div style={{ height: 600, width: 1200 }} className={classes.root}>
-                    <DataGrid rows={allTransactionData} columns={columns} pageSize={20} />
+                <div style={{ height: 600, width: '100%', margin: 0 }} className={classes.root}>
+                    <DataGrid density="compact" rows={allTransactionData} columns={columns} autoPageSize={true} />
                 </div>
             </Box>
         </Container>

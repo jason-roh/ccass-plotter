@@ -56,7 +56,7 @@ const columns = [
     { field: 'id', headerName: 'ID', hide: true },
     { field: 'AsOf', headerName: 'As Of', width: 130 },
     { field: 'ParticipantId', headerName: 'Participant ID', width: 150 },
-    { field: 'Name', headerName: 'Name', width: 550 },
+    { field: 'Name', headerName: 'Name', width: 450 },
     { field: 'Shareholding', headerName: 'Shareholding', width: 150, type: 'number' },
     { field: 'Percent', headerName: '%', width: 80, type: 'number' }
 ];
@@ -358,10 +358,13 @@ export default function HistoricalHoldings(props) {
                     />
                 </Box>
             </div>
-            <br></br><br></br>
-            <div style={{ height: 600, width: 1235 }}>
-                <DataGrid rows={topHoldingsData} columns={columns} pageSize={20} />
-            </div>
+            <Box mt={8} mb={10}>
+                <b>Shareholding Data</b>
+                <br></br><br></br>
+                <div style={{ height: 600, width: '100%', margin: 0 }}>
+                    <DataGrid density="compact" rows={topHoldingsData} columns={columns} autoPageSize={true} />
+                </div>
+            </Box>
         </Container >
     );
 };
