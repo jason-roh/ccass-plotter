@@ -235,7 +235,7 @@ export default function HistoricalHoldings(props) {
                     <b>Top {numberOfHolders} Participants As Of - {topHoldersAsOf}</b>
                 </Box>
                 <Box>
-                    <p style={{fontSize: '12px'}}>*Modify Holder, Min, Max and Scale to adjust charts</p>
+                    <p style={{fontSize: '12px'}}>*Modify Holder, Min, Max and Scale to Adjust Chart</p>
                     <Tooltip title={<span>Select Holder To Update Chart</span>}>
                         <TextField
                             id="holder"
@@ -366,7 +366,7 @@ export default function HistoricalHoldings(props) {
                 </Box>
             </div>
             <Box mt={8} mb={10}>
-                <b>Shareholding Data</b>
+                <b>Historic Shareholdings of Top {numberOfHolders} Holders</b>
                 <br></br><br></br>
                 <div style={{ height: 600, width: '100%', margin: 0 }}>
                     <DataGrid density="compact" rows={topHoldingsData} columns={columns} autoPageSize={true} />
