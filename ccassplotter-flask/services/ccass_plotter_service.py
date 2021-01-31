@@ -69,10 +69,21 @@ class CcassPlotterService(object):
         }
 
     def find_transactions(self, threshold, stock_code, start_date, end_date, multi) -> dict:
+        '''
+        Find any potential transactions each day among top 10 holders
+        It assumes that holding data given a day is EOD data
+
+        :param threshold: Threshold of shareholding % changes of a holder position 
+        :param stock_code: Stock Ric Code
+        :param start_date: Start Date of the holding period
+        :param end_date: End Date of the holding period
+        :param multi: Flag for multi threading or single threading
+        :return: dictionary of historical holdings change and transactions data
+        '''
         holder_service = HolderDataSerivceMulti() if multi else HolderDataSerivceSingle()
         historical_holdings = self._create_top_holdings_data(holder_service, 10, stock_code, start_date, end_date)
 
-        # calculate daily changes
+        # Calculate daily changes
         for holder in historical_holdings['Holders']:
             holdings = [
                 holding for holding in historical_holdings['Holdings'] if holding['ParticipantId'] == holder['Id']
@@ -94,16 +105,19 @@ class CcassPlotterService(object):
         ]
 
         holdings_with_change = sorted(holdings_with_change, key=lambda x: (x['AsOf'], -x['ShareholdingChangeInPercent']))
-        holdings_with_both_sides = []
+        holdings_with_transactions = []
         as_of_dates = sorted({holding['AsOf'] for holding in holdings_with_change})
+        
+        # Find any transactions each day
         for as_of in as_of_dates:
+            # Get holding changes data each day
             holdings_per_as_of = [holding for holding in holdings_with_change if holding['AsOf'] == as_of]
-            buy_side = next((holding for holding in holdings_per_as_of if holding['Side'] == 'BUY'), None)
-            sell_side = next((holding for holding in holdings_per_as_of if holding['Side'] == 'SELL'), None)
-            if buy_side and sell_side:
-                holdings_with_both_sides.extend(holdings_per_as_of)
-
+            
+            # If given a day we have both of BUY and SELL directions, we assume they are potential transactions
+            if all(x in {d['Side'] for d in holdings_per_as_of} for x in ['BUY', 'SELL']):
+                holdings_with_transactions.extend(holdings_per_as_of)
+                
         return {
             "Result": holdings_with_change,
-            "Transactions": holdings_with_both_sides
+            "Transactions": holdings_with_transactions
         }
