@@ -2,8 +2,14 @@ from datetime import datetime
 
 class ChartDataService():
     @staticmethod
-    def create_chart_data(result) -> [dict]:
-        chart_data = []
+    def _find_min_max(result) -> tuple:
+        buffer = 100000
+        all_positions = [x['Shareholding'] for x in result['Holdings']]
+        return max(min(all_positions) - buffer, 0), max(all_positions) + buffer
+
+    @staticmethod
+    def _create_line_data(result) -> [dict]:
+        line_data = []
         top_holders = [holder['Name'] for holder in result['Holders']]
 
         for holder in reversed(top_holders):
@@ -22,6 +28,16 @@ class ChartDataService():
                     for holding in holdings_per_holder
                 ]   
             }
-            chart_data.append(line_dict)
+            line_data.append(line_dict)
+        return line_data
 
-        return chart_data
+    @staticmethod
+    def create_chart_data(result) -> dict:
+        min_value, max_value = ChartDataService._find_min_max(result)
+        data = ChartDataService._create_line_data(result)
+
+        return {
+            "Min": min_value,
+            "Max": max_value,
+            "Data": data
+        }

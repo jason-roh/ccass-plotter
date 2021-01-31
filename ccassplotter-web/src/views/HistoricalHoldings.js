@@ -6,12 +6,51 @@ import Tooltip from '@material-ui/core/Tooltip'
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import RefreshIcon from '@material-ui/icons/Refresh';
-import { getAsyncHistoricalHoldings } from '../common/CcassPlotService';
-import { formatDate, addDays, validateInput } from "../common/Utils";
 import { ResponsiveLine } from '@nivo/line'
+import NumberFormat from "react-number-format";
+import { getAsyncHistoricalHoldings } from '../common/CcassPlotService';
+import { formatDate, validateInput, createString } from "../common/Utils";
+import { sampleHoldingData } from "../test/SampleData";
 
-let ChartData = [];
-let GridData = [];
+/**
+ * Initial Sample Data
+ */
+let ChartData = sampleHoldingData['Chart'];
+let minValue = sampleHoldingData['Chart']['Min'];
+let maxValue = sampleHoldingData['Chart']['Max'];
+let holdersList = sampleHoldingData['Result']['Holders'];
+let TopHoldingsData = sampleHoldingData['Result']['Holdings'];
+
+const findMinMax = (positions) => {
+    const buffer = 100000;
+    var merged = [].concat.apply([], positions).map(x => x['y']);
+    const max = Math.max(...merged);
+    const min = Math.min(...merged);
+    return {
+        "Max": max + buffer,
+        "Min": Math.max(0, min - buffer)
+    }
+}
+
+function NumberFormatCustom(props) {
+    const { inputRef, onChange, ...other } = props;
+
+    return (
+        <NumberFormat
+            {...other}
+            getInputRef={inputRef}
+            onValueChange={values => {
+                onChange({
+                    target: {
+                        name: props.name,
+                        value: values.value
+                    }
+                });
+            }}
+            thousandSeparator
+        />
+    );
+}
 
 const columns = [
     { field: 'id', headerName: 'ID', hide: true },
@@ -23,19 +62,19 @@ const columns = [
 ];
 
 export default function HistoricalHoldings(props) {
-    const today = new Date();
-    const yesterday = addDays(today, -1);
-    const oneWeekAgo = addDays(today, -5);
-    const [stockCode, setStockCode] = useState('');
-    const [startDate, setStartDate] = useState(oneWeekAgo);
-    const [endDate, setEndDate] = useState(yesterday);
+    const [stockCode, setStockCode] = useState('01128');
+    const [startDate, setStartDate] = useState(new Date('2020/12/24'));
+    const [endDate, setEndDate] = useState(new Date('2020/12/31'));
     const [isRequested, setIsRequested] = useState(false);
-    const [topHoldersAsOf, setTopHoldersAsOf] = useState('');
-    const [topHoldingsData, setTopHoldingsData] = useState([]);
-    const [chartData, setChartData] = useState([]);
+    const [topHoldersAsOf, setTopHoldersAsOf] = useState('2020/12/31');
+    const [topHoldingsData, setTopHoldingsData] = useState(TopHoldingsData);
     const [numberOfHolders, setNumberOfHolders] = useState(10);
     const [holderSelected, setHolderSelected] = useState('All');
-    const [holdersData, setHoldersData] = useState([]);
+    const [chartData, setChartData] = useState(ChartData);
+    const [min, setMin] = useState(minValue);
+    const [max, setMax] = useState(maxValue);
+    const [scale, setScale] = useState('log');
+    const [holdersData, setHoldersData] = useState(holdersList);
 
     const handleStockCodeChange = (event) => {
         setStockCode(event.target.value);
@@ -52,11 +91,31 @@ export default function HistoricalHoldings(props) {
         setHolderSelected(selectedHolder);
         if (selectedHolder === 'All') {
             setChartData(ChartData);
-            setTopHoldingsData(GridData);
+            setMin(ChartData['Min']);
+            setMax(ChartData['Max']);
+            setScale('log');
+            setTopHoldingsData(TopHoldingsData);
         } else {
-            setChartData(ChartData.filter(d => d['id'] === selectedHolder));
-            setTopHoldingsData(GridData.filter(d => d['Name'] === selectedHolder));
+            const selectedData = ChartData['Data'].filter(d => d['id'] === selectedHolder);
+            const result = findMinMax(selectedData[0]['data']);
+            setChartData({ "Data": selectedData });
+            setMin(result['Min']);
+            setMax(result['Max']);
+            setScale('linear');
+            setTopHoldingsData(TopHoldingsData.filter(d => d['Name'] === selectedHolder));
         }
+    };
+
+    const handleMinChange = (event) => {
+        setMin(parseInt(event.target.value));
+    };
+
+    const handleMaxChange = (event) => {
+        setMax(parseInt(event.target.value));
+    };
+
+    const handleScaleChange = (event) => {
+        setScale(event.target.value);
     };
 
     const handleStartDateChange = (date) => {
@@ -72,10 +131,10 @@ export default function HistoricalHoldings(props) {
     const ClearData = () => {
         setTopHoldersAsOf('');
         setTopHoldingsData([]);
-        setChartData([]);
+        setChartData({'Data': []});
         setHolderSelected('All');
-        ChartData = [];
-        GridData = [];
+        ChartData = {};
+        TopHoldingsData = [];
     };
 
     const clickRefreshButton = () => {
@@ -86,17 +145,24 @@ export default function HistoricalHoldings(props) {
         }
 
         setIsRequested(true);
-        getAsyncHistoricalHoldings(numberOfHolders, stockCode, formatDate(startDate), formatDate(endDate)).then(result => {
-            GridData = result['Result']['Holdings'];
+        getAsyncHistoricalHoldings(numberOfHolders, stockCode, formatDate(startDate), formatDate(endDate), props.isMulti).then(result => {
+            if (result['Result'] === undefined) throw result;
+
+            TopHoldingsData = result['Result']['Holdings'];
             ChartData = result['Chart'];
+
             setTopHoldersAsOf(result['Result']['TopHoldersAsOf']);
-            setTopHoldingsData(GridData);
-            setChartData(ChartData);
             setHoldersData(result['Result']['Holders']);
+            setTopHoldingsData(TopHoldingsData);
+            setChartData(ChartData);
+            setMin(ChartData['Min']);
+            setMax(ChartData['Max']);
             setIsRequested(false);
         }).catch(rejected => {
             setIsRequested(false);
             console.log(rejected);
+            const message = (typeof rejected === 'object' && rejected !== null) ? createString(rejected) : rejected;
+            alert(message);
         });
     }
 
@@ -175,14 +241,61 @@ export default function HistoricalHoldings(props) {
                         {holdersData.map(k => <MenuItem key={k['Name']} value={k['Name']}>{k['Name']}</MenuItem>)}
                     </TextField>
                 </Tooltip>
-                <Box style={{ height: 400 }}>
+                <TextField
+                    id="min"
+                    label="Min"
+                    style={{ width: 150 }}
+                    value={min}
+                    onChange={handleMinChange}
+                    InputProps={{
+                        inputComponent: NumberFormatCustom
+                    }}
+                >
+                </TextField>
+                <TextField
+                    id="max"
+                    label="Max"
+                    style={{ width: 150 }}
+                    value={max}
+                    onChange={handleMaxChange}
+                    InputProps={{
+                        inputComponent: NumberFormatCustom
+                    }}
+                >
+                </TextField>
+                <TextField
+                    id="scale"
+                    label="Scale"
+                    style={{ width: 100 }}
+                    value={scale}
+                    onChange={handleScaleChange} select>
+                    <MenuItem key="linear" value="linear">Linear</MenuItem>
+                    <MenuItem key="log" value="log">Log</MenuItem>
+                </TextField>
+                <Box style={{ height: 500 }}>
                     <ResponsiveLine
-                        data={chartData}
+                        data={chartData['Data']}
                         colors={{ 'scheme': 'category10' }}
-                        margin={{ top: 50, right: 350, bottom: 50, left: 110 }}
+                        margin={{ top: 50, right: 40, bottom: 50, left: 110 }}
                         xScale={{ type: 'point' }}
-                        yScale={{ type: 'linear', min: 'auto', max: 'auto', stacked: false, reverse: false }}
-                        yFormat=" >-.2f"
+                        yScale={{ type: scale, min: min, max: max, stacked: false, reverse: false }}
+                        yFormat=" >-,.0f"
+                        theme={{
+                            grid: {
+                                line: {
+                                    stroke: "grey",
+                                    strokeWidth: 0.3,
+                                    strokeDasharray: "2 2"
+                                }
+                            },
+                            tooltip: {
+                                container: {
+                                    fontSize: '10px'
+                                },
+                            }
+                        }}
+                        enableSlices='x'
+                        animate={true}
                         axisTop={null}
                         axisRight={null}
                         axisBottom={{
@@ -204,7 +317,7 @@ export default function HistoricalHoldings(props) {
                             legendPosition: 'middle',
                             format: ',.0f'
                         }}
-                        pointSize={10}
+                        pointSize={5}
                         pointColor={{ theme: 'background' }}
                         pointBorderWidth={2}
                         pointBorderColor={{ from: 'serieColor' }}
@@ -212,18 +325,18 @@ export default function HistoricalHoldings(props) {
                         useMesh={true}
                         legends={[
                             {
-                                anchor: 'bottom-right',
+                                anchor: 'top-right',
                                 direction: 'column',
                                 justify: false,
-                                translateX: 100,
+                                translateX: 0,
                                 translateY: 0,
                                 itemsSpacing: 0,
-                                itemDirection: 'left-to-right',
-                                itemWidth: 80,
-                                itemHeight: 20,
-                                itemOpacity: 0.75,
-                                symbolSize: 12,
-                                symbolShape: 'circle',
+                                itemDirection: 'right-to-left',
+                                itemWidth: 50,
+                                itemHeight: 18,
+                                itemOpacity: 0.4,
+                                symbolSize: 10,
+                                symbolShape: 'square',
                                 symbolBorderColor: 'rgba(0, 0, 0, .5)',
                                 effects: [
                                     {

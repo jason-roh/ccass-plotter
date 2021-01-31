@@ -2,9 +2,10 @@ import React, { useState } from 'react'
 import { AppBar, makeStyles, Tab, Toolbar, Typography, Box, Tabs, IconButton } from '@material-ui/core';
 import HistoricalHoldings from './views/HistoricalHoldings';
 import Transactions from './views/Transactions';
-import { BLUE_COLOR, WHITE_COLOR, TAB_NAME_TRANSCATIONS, TAB_NAME_HISTORICAL_HOLDINGS } from './common/Constants';
-import CheckIcon from '@material-ui/icons/Check';
+import { BLUE_COLOR, WHITE_COLOR, GREY_COLOR, TAB_NAME_TRANSCATIONS, TAB_NAME_HISTORICAL_HOLDINGS } from './common/Constants';
+import CloudIcon from '@material-ui/icons/Cloud';
 import { getAsyncHealthCheck } from './common/CcassPlotService';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const tabStyles = makeStyles({
   default_tab: {
@@ -31,7 +32,11 @@ const tabNames = [
 export default function CcassPlotter(props) {
   const classes = tabStyles();
   const [tabIndex, setTabIndex] = useState(0);
-
+  const [isMulti, setIsMulti] = useState(true);
+  const [cloudColor, setCloudColor] = useState(GREY_COLOR);
+  const handleIsMultiChehcked = (event) => {
+    setIsMulti(event.target.checked);
+};
   const handleTabChange = (event, newTab) => {
     setTabIndex(newTab);
   };
@@ -43,9 +48,9 @@ export default function CcassPlotter(props) {
   const renderBody = () => {
     switch (tabNames[tabIndex].name) {
       case TAB_NAME_HISTORICAL_HOLDINGS:
-        return (<HistoricalHoldings></HistoricalHoldings>);
+        return (<HistoricalHoldings isMulti={isMulti}></HistoricalHoldings>);
       case TAB_NAME_TRANSCATIONS:
-        return (<Transactions></Transactions>)
+        return (<Transactions isMulti={isMulti}></Transactions>)
       default:
         throw "Unknown tab name";
     }
@@ -53,10 +58,11 @@ export default function CcassPlotter(props) {
 
   const clickCheckButton = () => {
     getAsyncHealthCheck().then(result => {
-        console.log(result);
-        alert(result);
+      console.log(result);
+      setCloudColor(BLUE_COLOR);
     }).catch(rejected => {
-        console.log(rejected);
+      console.log(rejected);
+      setCloudColor(GREY_COLOR);
     });
   }
 
@@ -68,7 +74,14 @@ export default function CcassPlotter(props) {
             <Typography
               variant="h6"
               style={{ float: 'left', marginRight: '8px', marginTop: '8px', fontWeight: 600, color: BLUE_COLOR }}>
-              <IconButton onClick={clickCheckButton}><CheckIcon style={{ fontSize: 'small' }}></CheckIcon></IconButton>CCASS PLOTTER
+              <Checkbox
+                checked={isMulti}
+                onChange={handleIsMultiChehcked}
+                name="isMulti"
+                color="primary"
+                size="small"
+              />
+              <IconButton onClick={clickCheckButton}><CloudIcon style={{ fontSize: 'small', fill: cloudColor }}></CloudIcon></IconButton>CCASS PLOTTER
             </Typography>
             <Tabs TabIndicatorProps={{ style: { background: BLUE_COLOR } }} value={tabIndex} onChange={handleTabChange}>
               {tabNames.map((tab, i) => <Tab

@@ -1,19 +1,8 @@
 import requests
 from bs4 import BeautifulSoup
 from functools import wraps
+from utils.wrappers import retry
 
-def retry(func):
-    @wraps(func)
-    def wrapped(*args, **kwargs):
-        num_of_retry = 3
-        ex = None
-        for _ in range(num_of_retry):
-            try:
-                return func(*args, **kwargs)
-            except Exception as e:
-                ex = e
-        raise ex
-    return wrapped
 
 class HkexWebService(object):
     def __init__(self):
