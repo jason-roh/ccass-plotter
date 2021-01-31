@@ -235,6 +235,7 @@ export default function HistoricalHoldings(props) {
                     <b>Top {numberOfHolders} Participants As Of - {topHoldersAsOf}</b>
                 </Box>
                 <Box>
+                    <p style={{fontSize: '12px'}}>*Modify Holder, Min, Max and Scale to adjust charts</p>
                     <Tooltip title={<span>Select Holder To Update Chart</span>}>
                         <TextField
                             id="holder"
@@ -246,37 +247,43 @@ export default function HistoricalHoldings(props) {
                             {holdersData.map(k => <MenuItem key={k['Name']} value={k['Name']}>{k['Name']}</MenuItem>)}
                         </TextField>
                     </Tooltip>
-                    <TextField
-                        id="min"
-                        label="Min"
-                        style={{ width: 150 }}
-                        value={min}
-                        onChange={handleMinChange}
-                        InputProps={{
-                            inputComponent: NumberFormatCustom
-                        }}
-                    >
-                    </TextField>
-                    <TextField
-                        id="max"
-                        label="Max"
-                        style={{ width: 150 }}
-                        value={max}
-                        onChange={handleMaxChange}
-                        InputProps={{
-                            inputComponent: NumberFormatCustom
-                        }}
-                    >
-                    </TextField>
-                    <TextField
-                        id="scale"
-                        label="Scale"
-                        style={{ width: 100 }}
-                        value={scale}
-                        onChange={handleScaleChange} select>
-                        <MenuItem key="linear" value="linear">Linear</MenuItem>
-                        <MenuItem key="log" value="log">Log</MenuItem>
-                    </TextField>
+                    <Tooltip title={<span>Minimum value of Y Axis</span>}>
+                        <TextField
+                            id="min"
+                            label="Min"
+                            style={{ width: 150 }}
+                            value={min}
+                            onChange={handleMinChange}
+                            InputProps={{
+                                inputComponent: NumberFormatCustom
+                            }}
+                        >
+                        </TextField>
+                    </Tooltip>
+                    <Tooltip title={<span>Maximum value of Y Axis</span>}>
+                        <TextField
+                            id="max"
+                            label="Max"
+                            style={{ width: 150 }}
+                            value={max}
+                            onChange={handleMaxChange}
+                            InputProps={{
+                                inputComponent: NumberFormatCustom
+                            }}
+                        >
+                        </TextField>
+                    </Tooltip>
+                    <Tooltip title={<span>Scale of Y Axis</span>}>
+                        <TextField
+                            id="scale"
+                            label="Scale"
+                            style={{ width: 100 }}
+                            value={scale}
+                            onChange={handleScaleChange} select>
+                            <MenuItem key="linear" value="linear">Linear</MenuItem>
+                            <MenuItem key="log" value="log">Log</MenuItem>
+                        </TextField>
+                    </Tooltip>
                 </Box>
                 <Box style={{ height: 500 }}>
                     <ResponsiveLine
