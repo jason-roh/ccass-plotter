@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+     <title>CCASS Plotter Flask</title>
+     <meta charset="UTF-8">
+     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
+     <meta name="description" content="">
+     <meta name="keywords" content="">
+     <meta name="team" content="">
+     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/bootstrap.min.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/vegas.min.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/font-awesome.min.css') }}">
+     <link rel="stylesheet" href="{{ url_for('static',filename='css/templatemo-style.css') }}">
+</head>
+
+<body style="background-image: url('static/images/slide-image01.jpg')">
+     <!-- PRE LOADER -->
+     <section class="preloader">
+          <div class="spinner">
+               <span class="spinner-rotate"></span>
+          </div>
+     </section>
+
+     <!-- HOME -->
+     <section id="home">
+          <div class="overlay"></div>
+          <div class="container">
+               <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                         <div class="home-info">
+                              <h1>Welcome to CCASS Plotter Flask backend!</h1>
+                              <ul class="countdown">
+                                   <li>
+                                        <h3>If you experience technical issues, please check the website below</h3>
+                                        <span class="days"><a href="https://www.hkexnews.hk/sdw/search/searchsdw.aspx"
+                                                  target="_blank">HKEx CCASS Shareholding Search</a></span>
+                                   </li>
+                              </ul>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </section>
+
+     <!-- SCRIPTS -->
+     <script src="{{url_for('static', filename='js/jquery.js')}}"></script>
+     <script src="{{url_for('static', filename='js/bootstrap.min.js')}}"></script>
+     <script src="{{url_for('static', filename='js/vegas.min.js')}}"></script>
+     <script src="{{url_for('static', filename='js/custom.js')}}"></script>
+</body>
+</html>

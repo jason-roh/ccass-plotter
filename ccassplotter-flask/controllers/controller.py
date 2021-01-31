@@ -1,4 +1,4 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify, render_template
 from services.ccass_plotter_service import CcassPlotterService
 from utils.api_exceptions import ServiceUnavailable
 from utils.wrappers import throw_api_error
@@ -16,16 +16,12 @@ def handle_service_unavailable(error):
 
 
 @bp.route('/')
-def home() -> str:
-    return "This is backend of CCASS Plotter"
+def home():
+    return render_template('index.html')
 
 
 @bp.route('/api/healthcheck')
 def healthcheck() -> str:
-    """
-    Healthcheck endpoint
-    :return: a dummy string
-    """
     return json.dumps("success")
 
 
