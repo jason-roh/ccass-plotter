@@ -133,6 +133,9 @@ export default function HistoricalHoldings(props) {
         setTopHoldingsData([]);
         setChartData({'Data': []});
         setHolderSelected('All');
+        setHoldersData([]);
+        setMin(0);
+        setMax(0);
         ChartData = {};
         TopHoldingsData = [];
     };
