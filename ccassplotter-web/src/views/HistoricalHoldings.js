@@ -317,7 +317,7 @@ export default function HistoricalHoldings(props) {
                             legendPosition: 'middle',
                             format: ',.0f'
                         }}
-                        pointSize={3}
+                        pointSize={5}
                         pointColor={{ theme: 'background' }}
                         pointBorderWidth={2}
                         pointBorderColor={{ from: 'serieColor' }}

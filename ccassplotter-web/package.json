@@ -23,6 +23,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "react-spring-issue-1078": "find node_modules -path \\*@react-spring/\\*/package.json -exec sed -i.bak 's/\"sideEffects\": false/\"sideEffects\": true/g' {} +",
     "start:local-mac": "env-cmd -f .env.local-mac-config react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",

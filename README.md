@@ -22,3 +22,8 @@ npm install
 ```
 npm run start:local-mac
 ```
+4. react-spring patch due to known issue with Gatsby
+https://github.com/pmndrs/react-spring/issues/1078
+```
+npm run react-spring-issue-1078
+```
