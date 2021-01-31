@@ -7,7 +7,7 @@ import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/picker
 import DateFnsUtils from "@date-io/date-fns";
 import RefreshIcon from '@material-ui/icons/Refresh';
 import { getAsyncHistoricalHoldings } from '../common/CcassPlotService';
-import { formatDate, addDays, validateInput } from "../common/Utils";
+import { formatDate, addDays, validateInput, createString } from "../common/Utils";
 import { ResponsiveLine } from '@nivo/line'
 
 let ChartData = [];
@@ -87,6 +87,8 @@ export default function HistoricalHoldings(props) {
 
         setIsRequested(true);
         getAsyncHistoricalHoldings(numberOfHolders, stockCode, formatDate(startDate), formatDate(endDate), props.isMulti).then(result => {
+            if (result['Result'] === undefined) throw result;
+
             GridData = result['Result']['Holdings'];
             ChartData = result['Chart'];
             setTopHoldersAsOf(result['Result']['TopHoldersAsOf']);
@@ -97,6 +99,8 @@ export default function HistoricalHoldings(props) {
         }).catch(rejected => {
             setIsRequested(false);
             console.log(rejected);
+            const message = (typeof rejected === 'object' && rejected !== null) ? createString(rejected) : rejected;
+            alert(message);
         });
     }
 

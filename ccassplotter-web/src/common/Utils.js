@@ -23,4 +23,12 @@ const validateInput = (stockCode, numberOfHolders) => {
     return "";
 }
 
-export { formatDate, addDays, validateInput };
+const createString = (obj) => {
+    let resultString = ""
+    for (const [key, value] of Object.entries(obj)) {
+        resultString += `${key}: ${value}\n`
+    }
+    return resultString;
+}
+
+export { formatDate, addDays, validateInput, createString };

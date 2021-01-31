@@ -1,8 +1,18 @@
 from flask import Blueprint, request, jsonify
 from services.ccass_plotter_service import CcassPlotterService
+from utils.api_exceptions import ServiceUnavailable
+from utils.wrappers import throw_api_error
+from functools import wraps
 import json
 
 bp = Blueprint('', __name__)
+
+
+@bp.app_errorhandler(ServiceUnavailable)
+def handle_service_unavailable(error):
+    response = jsonify(error.to_dict())
+    response.status_code = error.status_code
+    return response
 
 
 @bp.route('/')
@@ -20,6 +30,7 @@ def healthcheck() -> str:
 
 
 @bp.route("/api/getHistoricalHoldings")
+@throw_api_error
 def get_historical_holdings():
     stock_code = request.args['StockCode']
     start_date = request.args['StartDate']
@@ -31,6 +42,7 @@ def get_historical_holdings():
 
 
 @bp.route("/api/findTransactions")
+@throw_api_error
 def find_transactions():
     stock_code = request.args['StockCode']
     start_date = request.args['StartDate']

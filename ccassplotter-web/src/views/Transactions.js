@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Container, TextField, Box, CircularProgress, IconButton } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
-import { formatDate, addDays, validateInput } from "../common/Utils"
+import { formatDate, addDays, validateInput, createString } from "../common/Utils"
 import Tooltip from '@material-ui/core/Tooltip'
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
@@ -103,12 +103,15 @@ export default function HistoricalHoldings(props) {
 
         setIsRequested(true);
         getAsyncFindTransactions(threshold, stockCode, formatDate(startDate), formatDate(endDate), props.isMulti).then(result => {
+            if (result['Result'] === undefined) throw result;
             setTransactionData(result['Transactions']);
             setAllTransactionData(result['Result']);
             setIsRequested(false);
         }).catch(rejected => {
             setIsRequested(false);
             console.log(rejected);
+            const message = (typeof rejected === 'object' && rejected !== null) ? createString(rejected) : rejected;
+            alert(message);
         });
     }
 
