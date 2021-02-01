@@ -50,6 +50,7 @@ class CcassPlotterService(object):
 
         # 1. Iterate over the date ranges to find shareholdings
         all_holders_data = holder_service.get_all_holders_data(stock_code, start_date, end_date)
+        all_holders_data = sorted(all_holders_data, key=lambda x: x['AsOf'])
 
         # 2. find the top holders of a stock code as of end date
         top_holders = holder_service.get_top_holders(int(number_of_holders), stock_code, end_date)
@@ -122,6 +123,7 @@ class CcassPlotterService(object):
             "StartDate": start_date,
             "EndDate": end_date,
             "Threshold": threshold,
+            "StockName": historical_holdings['StockName'],
             "HoldingChanges": holdings_with_change,
             "Transactions": holdings_with_transactions
         }

@@ -28,7 +28,9 @@ class HkexWebService(object):
         keys = ["Name", "Address", "Shareholding", "Percent"]
         table_records = soup_obj.findAll("div", {"class": "mobile-list-body"})
         as_of_updated = soup_obj.find("input", {"class": "input-searchDate"})
+        stock_name_input = soup_obj.find("input", {"name": "txtStockName"})
         as_of = as_of_updated.get('value')
+        stock_name = stock_name_input.get('value')
 
         n = 5
         for i in range(0, len(table_records), n):
@@ -41,7 +43,7 @@ class HkexWebService(object):
             item['ShareholdingNumber'] = int(item['Shareholding'].replace(",", ""))
             item['PercentNumber'] = float(item['Percent'].replace("%", ""))           
 
-        return as_of, results
+        return stock_name, results
 
     @retry
     def get_shareholding_data(self, current_date, stock_code, shareholding_date) -> dict:
@@ -50,9 +52,10 @@ class HkexWebService(object):
             postdata = HkexWebService.create_post_data(current_date, stock_code, shareholding_date)
             resp = s.post(self.url, data=postdata)
             soup = BeautifulSoup(resp.text, 'lxml')
-            as_of, holdings = HkexWebService.parse_result(soup)
+            stock_name, holdings = HkexWebService.parse_result(soup)
             return {
                 "StockCode": stock_code,
                 "AsOf": shareholding_date,
+                "StockName": stock_name,
                 "Holdings": holdings
             }

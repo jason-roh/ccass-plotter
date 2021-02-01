@@ -36,6 +36,7 @@ class HolderDataService(ABC):
         return {
             "TopHoldersAsOf": shareholding_data['AsOf'],
             "StockCode": shareholding_data['StockCode'],
+            "StockName": shareholding_data['StockName'],
             "Holders": top_holders
         }
 

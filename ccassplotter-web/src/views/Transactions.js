@@ -34,7 +34,7 @@ const columns = [
     { field: 'Percent', headerName: '%', width: 80, type: 'number' },
     { field: 'ShareholdingChange', headerName: 'Change', width: 130, type: 'number' },
     {
-        field: 'ShareholdingChangeInPercent', type: 'number', headerName: 'Change %', width: 130,
+        field: 'ShareholdingChangeInPercent', type: 'number', headerName: '% Change', width: 130,
         cellClassName: (params) =>
             clsx('super-app', {
                 negative: params.value < 0,
@@ -61,10 +61,11 @@ const columns2 = [
 export default function Transactions(props) {
     const classes = useStyles();
     const [isRequested, setIsRequested] = useState(false);
-    const [stockCode, setStockCode] = useState('00005');
-    const [startDate, setStartDate] = useState(new Date('2020/12/24'));
-    const [endDate, setEndDate] = useState(new Date('2020/12/31'));
+    const [stockCode, setStockCode] = useState('01128');
+    const [startDate, setStartDate] = useState(new Date('2021/01/20'));
+    const [endDate, setEndDate] = useState(new Date('2021/01/31'));
     const [threshold, setThreshold] = useState(1.0);
+    const [stockName, setStockName] = useState(transactionSampleData['StockName']);
     const [allTransactionData, setAllTransactionData] = useState(transactionSampleData['HoldingChanges']);
     const [transactionData, setTransactionData] = useState(transactionSampleData['Transactions']);
 
@@ -72,6 +73,11 @@ export default function Transactions(props) {
         setStockCode(event.target.value);
         ClearData();
     };
+
+    const handleStockNameChange = (event) => {
+        setStockName(event.target.value);
+    };
+
 
     const handleStartDateChange = (date) => {
         setStartDate(date);
@@ -91,6 +97,7 @@ export default function Transactions(props) {
     const ClearData = () => {
         setTransactionData([]);
         setAllTransactionData([]);
+        setStockName('');
     };
 
     const clickRefreshButton = () => {
@@ -102,9 +109,10 @@ export default function Transactions(props) {
 
         setIsRequested(true);
         getAsyncFindTransactions(threshold, stockCode, formatDate(startDate), formatDate(endDate), props.isMulti).then(result => {
-            if (result['Result'] === undefined) throw result;
+            if (result['HoldingChanges'] === undefined) throw result;
             setTransactionData(result['Transactions']);
-            setAllTransactionData(result['Result']);
+            setAllTransactionData(result['HoldingChanges']);
+            setStockName(result['StockName']);
             setIsRequested(false);
         }).catch(rejected => {
             setIsRequested(false);
@@ -175,12 +183,22 @@ export default function Transactions(props) {
                             onChange={handleThresholdChange}>
                         </TextField>
                     </Tooltip>
+                    <TextField
+                        InputProps={{
+                            readOnly: true,
+                        }}
+                        id="stockName"
+                        label="Stock Name"
+                        style={{ width: 300 }}
+                        value={stockName}
+                        onChange={handleStockNameChange}>
+                    </TextField>
                 </Box>
             </div>
             <Box mt={8}>
                 <b>Potential Transactions</b>
                 <br></br><br></br>
-                <p style={{fontSize: '12px'}}>*Click Column Header to Sort or Column Menu to Filter</p>
+                <p style={{ fontSize: '12px' }}>*Click Column Header to Sort or Column Menu to Filter</p>
                 <div style={{ height: 400, width: '100%', margin: 0 }} className={classes.root}>
                     <DataGrid density="compact" rows={transactionData} columns={columns2} autoPageSize={true} />
                 </div>
@@ -188,7 +206,7 @@ export default function Transactions(props) {
             <Box mt={8} mb={10}>
                 <b>Participants who increase or decrease more than {threshold} % of the shares in a day</b>
                 <br></br><br></br>
-                <p style={{fontSize: '12px'}}>*Click Column Header to Sort or Column Menu to Filter</p>
+                <p style={{ fontSize: '12px' }}>*Click Column Header to Sort or Filter</p>
                 <div style={{ height: 600, width: '100%', margin: 0 }} className={classes.root}>
                     <DataGrid density="compact" rows={allTransactionData} columns={columns} autoPageSize={true} />
                 </div>
