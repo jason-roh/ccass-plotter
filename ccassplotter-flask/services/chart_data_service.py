@@ -1,11 +1,14 @@
 from datetime import datetime
 
+# Log scale chart can not accept zero value
+APPROXIMATE_ZERO = 0.00000001
+
 class ChartDataService():
     @staticmethod
     def _find_min_max(result) -> tuple:
         buffer = 100000
         all_positions = [x['Shareholding'] for x in result['Holdings']]
-        return max(min(all_positions) - buffer, 0), max(all_positions) + buffer
+        return max(min(all_positions) - buffer, APPROXIMATE_ZERO), max(all_positions) + buffer
 
     @staticmethod
     def _create_line_data(result) -> [dict]:
@@ -23,7 +26,7 @@ class ChartDataService():
                 'data': [
                     {
                         'x': datetime.strptime(holding['AsOf'], '%Y/%m/%d').strftime('%m/%d'),
-                        'y': holding['Shareholding']
+                        'y': holding['Shareholding'] if holding['Shareholding'] else APPROXIMATE_ZERO
                     } 
                     for holding in holdings_per_holder
                 ]   

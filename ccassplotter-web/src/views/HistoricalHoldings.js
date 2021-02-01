@@ -11,6 +11,7 @@ import NumberFormat from "react-number-format";
 import { getAsyncHistoricalHoldings } from '../common/CcassPlotService';
 import { formatDate, validateInput, createString } from "../common/Utils";
 import { sampleHoldingData } from "../test/SampleData";
+import { APPROXIMATE_ZERO } from '../common/Constants';
 
 /**
  * Initial Sample Data
@@ -99,7 +100,8 @@ export default function HistoricalHoldings(props) {
             setChartData(ChartData);
             setMin(ChartData['Min']);
             setMax(ChartData['Max']);
-            setScale('log');
+            const scaleValue = ChartData['Min'] <= APPROXIMATE_ZERO ? 'linear' : 'log';
+            setScale(scaleValue);
             setTopHoldingsData(TopHoldingsData);
         } else {
             const selectedData = ChartData['Data'].filter(d => d['id'] === selectedHolder);
@@ -113,11 +115,19 @@ export default function HistoricalHoldings(props) {
     };
 
     const handleMinChange = (event) => {
-        setMin(parseInt(event.target.value));
+        let minValue = event.target.value;
+        if (minValue < APPROXIMATE_ZERO){
+            minValue = APPROXIMATE_ZERO;
+        }
+        setMin(parseInt(minValue));
     };
 
     const handleMaxChange = (event) => {
-        setMax(parseInt(event.target.value));
+        let maxValue = event.target.value;
+        if (maxValue < APPROXIMATE_ZERO){
+            maxValue = APPROXIMATE_ZERO;
+        }
+        setMax(parseInt(maxValue));
     };
 
     const handleScaleChange = (event) => {
@@ -166,8 +176,10 @@ export default function HistoricalHoldings(props) {
             setStockName(result['Result']['StockName']);
             setTopHoldingsData(TopHoldingsData);
             setChartData(ChartData);
-            setMin(ChartData['Min']);
             setMax(ChartData['Max']);
+            setMin(ChartData['Min']);
+            const scaleValue = ChartData['Min'] <= APPROXIMATE_ZERO ? 'linear' : 'log';
+            setScale(scaleValue);
             setIsRequested(false);
         }).catch(rejected => {
             setIsRequested(false);

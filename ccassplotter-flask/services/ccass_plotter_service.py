@@ -54,7 +54,12 @@ class CcassPlotterService(object):
 
         # 2. find the top holders of a stock code as of end date
         top_holders = holder_service.get_top_holders(int(number_of_holders), stock_code, end_date)
-        
+        if not top_holders['Holders']:
+            # If we can't find the list of top holders - it is critical error
+            raise RuntimeError(
+                'Unable to find Top Holders for {} - please check HKEx Website or adjust End Date {}'.format(stock_code, end_date)
+            )
+
         # 3. Filtering out with top holders and create Grid data
         top_holders['Holdings'] = CcassPlotterService.filter_and_create_grid_data(all_holders_data, top_holders)
 

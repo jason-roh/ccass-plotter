@@ -25,25 +25,28 @@ class HkexWebService(object):
     @staticmethod
     def parse_result(soup_obj) -> (str, dict):
         results = {}
+        stock_name = ""
         keys = ["Name", "Address", "Shareholding", "Percent"]
-        table_records = soup_obj.findAll("div", {"class": "mobile-list-body"})
-        as_of_updated = soup_obj.find("input", {"class": "input-searchDate"})
-        stock_name_input = soup_obj.find("input", {"name": "txtStockName"})
-        as_of = as_of_updated.get('value')
-        stock_name = stock_name_input.get('value')
 
-        n = 5
-        for i in range(0, len(table_records), n):
-            participant_id = table_records[i].get_text()
-            values = [field.get_text() for field in table_records[i+1:i+n]]
-            holdings_dict = dict(zip(keys, values))
-            results[participant_id] = holdings_dict
+        try:
+            table_records = soup_obj.findAll("div", {"class": "mobile-list-body"})
+            stock_name_input = soup_obj.find("input", {"name": "txtStockName"})
+            stock_name = stock_name_input.get('value')
 
-        for item in results.values():
-            item['ShareholdingNumber'] = int(item['Shareholding'].replace(",", ""))
-            item['PercentNumber'] = float(item['Percent'].replace("%", ""))           
+            n = 5
+            for i in range(0, len(table_records), n):
+                participant_id = table_records[i].get_text()
+                values = [field.get_text() for field in table_records[i+1:i+n]]
+                holdings_dict = dict(zip(keys, values))
+                results[participant_id] = holdings_dict
 
-        return stock_name, results
+            for item in results.values():
+                item['ShareholdingNumber'] = int(item['Shareholding'].replace(",", ""))
+                item['PercentNumber'] = float(item['Percent'].replace("%", ""))
+        except Exception as e:
+            print("No holding data from HKEx - {}".format(e))
+        finally:
+            return stock_name if stock_name else '', results
 
     @retry
     def get_shareholding_data(self, current_date, stock_code, shareholding_date) -> dict:
