@@ -9,7 +9,7 @@ def throw_api_error(func):
             return func(*args, **kwargs)
         except Exception as ex:
             raise ServiceUnavailable(
-                "Check if HKEx Website is up and running - \n\n{}".format(
+                "Check if HKEx Website is up and running - {}\n\n{}".format(str(ex),
                     ''.join(traceback.format_exception(etype=type(ex), value=ex, tb=ex.__traceback__)))
             )
     return wrapped
