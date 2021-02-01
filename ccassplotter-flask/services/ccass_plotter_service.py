@@ -98,6 +98,9 @@ class CcassPlotterService(object):
             holdings = sorted(holdings, key=lambda x: x['AsOf'])
             for i in range(1, len(holdings)):
                 shareholding_prev = holdings[i-1]['Shareholding']
+                if not shareholding_prev:
+                    continue
+                
                 shareholding = holdings[i]['Shareholding']
                 change = shareholding - shareholding_prev
                 change_in_percent = 100 * (shareholding - shareholding_prev) / shareholding_prev

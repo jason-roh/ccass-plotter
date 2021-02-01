@@ -158,7 +158,7 @@ export default function HistoricalHoldings(props) {
     };
 
     const clickRefreshButton = () => {
-        const errMsg = validateInput(stockCode, numberOfHolders);
+        const errMsg = validateInput(stockCode, numberOfHolders, startDate, endDate);
         if (errMsg) {
             alert(errMsg);
             return;

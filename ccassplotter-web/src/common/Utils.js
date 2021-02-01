@@ -13,12 +13,15 @@ const addDays = (date, days) => {
     return result;
 };
 
-const validateInput = (stockCode, numberOfHolders) => {
+const validateInput = (stockCode, numberOfHolders, startDate, endDate) => {
     if (stockCode.length !== 5) {
         return "Invalid StockCode";
     }
     if (numberOfHolders <= 0) {
         return "Number Of Holders Should Be Greater Than 0";
+    }
+    if (startDate >= endDate) {
+        return "StartDate must be earlier than End Date";
     }
     return "";
 }

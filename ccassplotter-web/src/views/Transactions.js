@@ -101,7 +101,7 @@ export default function Transactions(props) {
     };
 
     const clickRefreshButton = () => {
-        const errMsg = validateInput(stockCode, threshold);
+        const errMsg = validateInput(stockCode, threshold, startDate, endDate);
         if (errMsg) {
             alert(errMsg);
             return;
