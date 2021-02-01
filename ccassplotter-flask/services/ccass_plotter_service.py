@@ -38,6 +38,47 @@ class CcassPlotterService(object):
                 row_id = row_id + 1
         return holding_data
 
+    @staticmethod
+    def calculate_daily_changes(historical_holdings, threshold):
+        for holder in historical_holdings['Holders']:
+            holdings = [
+                holding for holding in historical_holdings['Holdings'] if holding['ParticipantId'] == holder['Id']
+            ]
+
+            holdings = sorted(holdings, key=lambda x: x['AsOf'])
+            for i in range(1, len(holdings)):
+                shareholding_prev = holdings[i-1]['Shareholding']
+                if not shareholding_prev:
+                    continue
+
+                shareholding = holdings[i]['Shareholding']
+                change = shareholding - shareholding_prev
+                change_in_percent = 100 * (shareholding - shareholding_prev) / shareholding_prev
+                holdings[i]['ShareholdingChange'] = change
+                holdings[i]['ShareholdingChangeInPercent'] = change_in_percent
+                holdings[i]['Side'] = 'BUY' if change_in_percent > 0 else 'SELL'
+        
+        holdings_with_change = [
+            holding for holding in historical_holdings['Holdings']
+            if 'ShareholdingChange' in holding and abs(holding['ShareholdingChangeInPercent']) > float(threshold)
+        ]
+        return sorted(holdings_with_change, key=lambda x: (x['AsOf'], -x['ShareholdingChangeInPercent']))
+
+    @staticmethod
+    def find_daily_transactions(holdings_with_change):
+        holdings_with_transactions = []
+        as_of_dates = sorted({holding['AsOf'] for holding in holdings_with_change})
+        
+        # Find any transactions each day
+        for as_of in as_of_dates:
+            # Get holding changes data each day
+            holdings_per_as_of = [holding for holding in holdings_with_change if holding['AsOf'] == as_of]
+            
+            # If given a day we have both of BUY and SELL directions, we assume they are potential transactions
+            if all(x in {d['Side'] for d in holdings_per_as_of} for x in ['BUY', 'SELL']):
+                holdings_with_transactions.extend(holdings_per_as_of)
+        return holdings_with_transactions
+
     def _create_top_holdings_data(self, holder_service, number_of_holders, stock_code, start_date, end_date) -> dict:
         """
         Find historical holdings data of top holders as of End Date
@@ -88,44 +129,9 @@ class CcassPlotterService(object):
         '''
         holder_service = HolderDataSerivceMulti() if multi else HolderDataSerivceSingle()
         historical_holdings = self._create_top_holdings_data(holder_service, 10, stock_code, start_date, end_date)
-
-        # Calculate daily changes
-        for holder in historical_holdings['Holders']:
-            holdings = [
-                holding for holding in historical_holdings['Holdings'] if holding['ParticipantId'] == holder['Id']
-            ]
-
-            holdings = sorted(holdings, key=lambda x: x['AsOf'])
-            for i in range(1, len(holdings)):
-                shareholding_prev = holdings[i-1]['Shareholding']
-                if not shareholding_prev:
-                    continue
-                
-                shareholding = holdings[i]['Shareholding']
-                change = shareholding - shareholding_prev
-                change_in_percent = 100 * (shareholding - shareholding_prev) / shareholding_prev
-                holdings[i]['ShareholdingChange'] = change
-                holdings[i]['ShareholdingChangeInPercent'] = change_in_percent
-                holdings[i]['Side'] = 'BUY' if change_in_percent > 0 else 'SELL'
-        
-        holdings_with_change = [
-            holding for holding in historical_holdings['Holdings']
-            if 'ShareholdingChange' in holding and abs(holding['ShareholdingChangeInPercent']) > float(threshold)
-        ]
-
-        holdings_with_change = sorted(holdings_with_change, key=lambda x: (x['AsOf'], -x['ShareholdingChangeInPercent']))
-        holdings_with_transactions = []
-        as_of_dates = sorted({holding['AsOf'] for holding in holdings_with_change})
-        
-        # Find any transactions each day
-        for as_of in as_of_dates:
-            # Get holding changes data each day
-            holdings_per_as_of = [holding for holding in holdings_with_change if holding['AsOf'] == as_of]
-            
-            # If given a day we have both of BUY and SELL directions, we assume they are potential transactions
-            if all(x in {d['Side'] for d in holdings_per_as_of} for x in ['BUY', 'SELL']):
-                holdings_with_transactions.extend(holdings_per_as_of)
-                
+        holdings_with_change = CcassPlotterService.calculate_daily_changes(historical_holdings, threshold)
+        holdings_with_transactions = CcassPlotterService.find_daily_transactions(holdings_with_change)
+               
         return {
             "StockCode": stock_code,
             "StartDate": start_date,

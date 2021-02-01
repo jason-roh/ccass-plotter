@@ -70,7 +70,7 @@ export default function CcassPlotter(props) {
   };
 
   useEffect(() => {
-    if (cloudColor === GREY_COLOR) clickCheckButton();
+    clickCheckButton();
   }, []);
 
   return (
