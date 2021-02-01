@@ -63,12 +63,13 @@ const columns = [
 
 export default function HistoricalHoldings(props) {
     const [stockCode, setStockCode] = useState('01128');
-    const [startDate, setStartDate] = useState(new Date('2020/12/24'));
-    const [endDate, setEndDate] = useState(new Date('2020/12/31'));
+    const [startDate, setStartDate] = useState(new Date('2021/01/20'));
+    const [endDate, setEndDate] = useState(new Date('2021/01/31'));
     const [isRequested, setIsRequested] = useState(false);
-    const [topHoldersAsOf, setTopHoldersAsOf] = useState('2020/12/31');
+    const [topHoldersAsOf, setTopHoldersAsOf] = useState('2021/01/31');
     const [topHoldingsData, setTopHoldingsData] = useState(TopHoldingsData);
     const [numberOfHolders, setNumberOfHolders] = useState(10);
+    const [stockName, setStockName] = useState(sampleHoldingData['Result']['StockName']);
     const [holderSelected, setHolderSelected] = useState('All');
     const [chartData, setChartData] = useState(ChartData);
     const [min, setMin] = useState(minValue);
@@ -80,6 +81,11 @@ export default function HistoricalHoldings(props) {
         setStockCode(event.target.value);
         ClearData();
     };
+
+    const handleStockNameChange = (event) => {
+        setStockName(event.target.value);
+    };
+
 
     const handleNumberOfHolders = (event) => {
         setNumberOfHolders(event.target.value);
@@ -133,6 +139,7 @@ export default function HistoricalHoldings(props) {
         setTopHoldingsData([]);
         setChartData({ 'Data': [] });
         setHolderSelected('All');
+        setStockName('');
         setHoldersData([]);
         setMin(0);
         setMax(0);
@@ -156,6 +163,7 @@ export default function HistoricalHoldings(props) {
 
             setTopHoldersAsOf(result['Result']['TopHoldersAsOf']);
             setHoldersData(result['Result']['Holders']);
+            setStockName(result['Result']['StockName']);
             setTopHoldingsData(TopHoldingsData);
             setChartData(ChartData);
             setMin(ChartData['Min']);
@@ -229,13 +237,23 @@ export default function HistoricalHoldings(props) {
                         onChange={handleNumberOfHolders}>
                     </TextField>
                 </Tooltip>
+                <TextField
+                    InputProps={{
+                        readOnly: true,
+                    }}
+                    id="stockName"
+                    label="Stock Name"
+                    style={{ width: 300 }}
+                    value={stockName}
+                    onChange={handleStockNameChange}>
+                </TextField>
             </Box>
             <div className="App-main">
                 <Box mt={4} mb={4}>
                     <b>Top {numberOfHolders} Participants As Of - {topHoldersAsOf}</b>
                 </Box>
                 <Box>
-                    <p style={{fontSize: '12px'}}>*Modify Holder, Min, Max and Scale to Adjust Chart</p>
+                    <p style={{ fontSize: '12px' }}>*Modify Holder, Min, Max and Scale to Adjust Chart</p>
                     <Tooltip title={<span>Select Holder To Update Chart</span>}>
                         <TextField
                             id="holder"
@@ -368,7 +386,7 @@ export default function HistoricalHoldings(props) {
             <Box mt={8} mb={10}>
                 <b>Historic Shareholdings of Top {numberOfHolders} Holders</b>
                 <br></br><br></br>
-                <p style={{fontSize: '12px'}}>*Click Column Header to Sort or Column Menu to Filter</p>
+                <p style={{ fontSize: '12px' }}>*Click Column Header to Sort or Filter</p>
                 <div style={{ height: 600, width: '100%', margin: 0 }}>
                     <DataGrid density="compact" rows={topHoldingsData} columns={columns} autoPageSize={true} />
                 </div>
