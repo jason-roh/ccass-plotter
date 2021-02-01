@@ -46,3 +46,9 @@ source deploy.sh
 ```
 source deploy.sh
 ```
+
+### Invalidate Files on CloudFront
+1. Run command below
+```
+aws cloudfront create-invalidation --distribution-id your-dist-id --paths "/*"
+```
