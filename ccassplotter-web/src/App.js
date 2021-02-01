@@ -1,11 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { AppBar, makeStyles, Tab, Toolbar, Typography, Box, Tabs, IconButton } from '@material-ui/core';
+import CloudIcon from '@material-ui/icons/Cloud';
+import Checkbox from '@material-ui/core/Checkbox';
 import HistoricalHoldings from './views/HistoricalHoldings';
 import Transactions from './views/Transactions';
-import { BLUE_COLOR, WHITE_COLOR, GREY_COLOR, TAB_NAME_TRANSCATIONS, TAB_NAME_HISTORICAL_HOLDINGS } from './common/Constants';
-import CloudIcon from '@material-ui/icons/Cloud';
 import { getAsyncHealthCheck } from './common/CcassPlotService';
-import Checkbox from '@material-ui/core/Checkbox';
+import {
+  BLUE_COLOR, WHITE_COLOR, GREY_COLOR, TAB_NAME_TRANSCATIONS, TAB_NAME_HISTORICAL_HOLDINGS
+} from './common/Constants';
+
 
 const tabStyles = makeStyles({
   default_tab: {
@@ -36,7 +39,7 @@ export default function CcassPlotter(props) {
   const [cloudColor, setCloudColor] = useState(GREY_COLOR);
   const handleIsMultiChehcked = (event) => {
     setIsMulti(event.target.checked);
-};
+  };
   const handleTabChange = (event, newTab) => {
     setTabIndex(newTab);
   };
@@ -64,7 +67,11 @@ export default function CcassPlotter(props) {
       console.log(rejected);
       setCloudColor(GREY_COLOR);
     });
-  }
+  };
+
+  useEffect(() => {
+    clickCheckButton();
+  }, []);
 
   return (
     <div>

@@ -1,0 +1,47 @@
+{
+    "TopHoldersAsOf": "20210131",
+    "StockCode": "01128",
+    "StockName": "WYNN MACAU, LIMITED",
+    "Holders": [
+        {
+            "Id": "C00100",
+            "Name": "JPMORGAN CHASE BANK, NATIONAL"
+        },
+        {
+            "Id": "C00019",
+            "Name": "THE HONGKONG AND SHANGHAI BANKING"
+        },
+        {
+            "Id": "C00010",
+            "Name": "CITIBANK N.A."
+        },
+        {
+            "Id": "C00039",
+            "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD"
+        },
+        {
+            "Id": "B01130",
+            "Name": "BOCI SECURITIES LTD"
+        },
+        {
+            "Id": "A00003",
+            "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING"
+        },
+        {
+            "Id": "C00033",
+            "Name": "BANK OF CHINA (HONG KONG) LTD"
+        },
+        {
+            "Id": "C00074",
+            "Name": "DEUTSCHE BANK AG"
+        },
+        {
+            "Id": "B01274",
+            "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD"
+        },
+        {
+            "Id": "B01161",
+            "Name": "UBS SECURITIES HONG KONG LTD"
+        }
+    ]
+}
