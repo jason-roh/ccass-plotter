@@ -9,7 +9,6 @@ import {
   BLUE_COLOR, WHITE_COLOR, GREY_COLOR, TAB_NAME_TRANSCATIONS, TAB_NAME_HISTORICAL_HOLDINGS
 } from './common/Constants';
 
-
 const tabStyles = makeStyles({
   default_tab: {
     minWidth: 150,

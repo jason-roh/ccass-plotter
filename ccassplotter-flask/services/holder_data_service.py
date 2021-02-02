@@ -31,7 +31,7 @@ class HolderDataService(ABC):
         # We queried HKEx holders data in descending order by shareholding
         top_holdings = dict(itertools.islice(
             shareholding_data['Holdings'].items(), int(number_of_holders)))
-        top_holders = [{"Id": k, "Name": v["Name"]} for k, v in top_holdings.items()]
+        top_holders = [{"Id": k, "Name": v["Name"], "Key": v["Name"] + "_" + k} for k, v in top_holdings.items()]
 
         return {
             "TopHoldersAsOf": shareholding_data['AsOf'],

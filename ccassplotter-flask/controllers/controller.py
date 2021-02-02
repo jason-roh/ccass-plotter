@@ -1,9 +1,8 @@
 from flask import Blueprint, request, jsonify, render_template
+import json
 from services.ccass_plotter_service import CcassPlotterService
 from utils.api_exceptions import ServiceUnavailable
 from utils.wrappers import throw_api_error
-from functools import wraps
-import json
 
 bp = Blueprint('', __name__)
 

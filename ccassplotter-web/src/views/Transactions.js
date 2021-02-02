@@ -78,7 +78,6 @@ export default function Transactions(props) {
         setStockName(event.target.value);
     };
 
-
     const handleStartDateChange = (date) => {
         setStartDate(date);
         ClearData();

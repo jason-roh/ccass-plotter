@@ -1,47 +1,1643 @@
 {
-    "TopHoldersAsOf": "20210131",
-    "StockCode": "01128",
-    "StockName": "WYNN MACAU, LIMITED",
-    "Holders": [
-        {
-            "Id": "C00100",
-            "Name": "JPMORGAN CHASE BANK, NATIONAL"
-        },
-        {
-            "Id": "C00019",
-            "Name": "THE HONGKONG AND SHANGHAI BANKING"
-        },
-        {
-            "Id": "C00010",
-            "Name": "CITIBANK N.A."
-        },
-        {
-            "Id": "C00039",
-            "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD"
-        },
-        {
-            "Id": "B01130",
-            "Name": "BOCI SECURITIES LTD"
-        },
-        {
-            "Id": "A00003",
-            "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING"
-        },
-        {
-            "Id": "C00033",
-            "Name": "BANK OF CHINA (HONG KONG) LTD"
-        },
-        {
-            "Id": "C00074",
-            "Name": "DEUTSCHE BANK AG"
-        },
-        {
-            "Id": "B01274",
-            "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD"
-        },
-        {
-            "Id": "B01161",
-            "Name": "UBS SECURITIES HONG KONG LTD"
-        }
-    ]
+    "Result": {
+        "TopHoldersAsOf": "20210130",
+        "StockCode": "03690",
+        "StockName": "MEITUAN",
+        "Holders": [
+            {
+                "Id": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING"
+            },
+            {
+                "Id": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL"
+            },
+            {
+                "Id": "C00010",
+                "Name": "CITIBANK N.A."
+            },
+            {
+                "Id": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD"
+            },
+            {
+                "Id": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING"
+            },
+            {
+                "Id": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING"
+            },
+            {
+                "Id": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD"
+            },
+            {
+                "Id": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD"
+            },
+            {
+                "Id": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD"
+            },
+            {
+                "Id": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD"
+            }
+        ],
+        "Holdings": [
+            {
+                "id": 1,
+                "AsOf": "2021/01/19",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1278581024,
+                "Percent": 21.72
+            },
+            {
+                "id": 2,
+                "AsOf": "2021/01/19",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 570475418,
+                "Percent": 9.69
+            },
+            {
+                "id": 3,
+                "AsOf": "2021/01/19",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 463823223,
+                "Percent": 7.88
+            },
+            {
+                "id": 4,
+                "AsOf": "2021/01/19",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 432320537,
+                "Percent": 7.34
+            },
+            {
+                "id": 5,
+                "AsOf": "2021/01/19",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 206048926,
+                "Percent": 3.5
+            },
+            {
+                "id": 6,
+                "AsOf": "2021/01/19",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 193028468,
+                "Percent": 3.27
+            },
+            {
+                "id": 7,
+                "AsOf": "2021/01/19",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 175681196,
+                "Percent": 2.98
+            },
+            {
+                "id": 8,
+                "AsOf": "2021/01/19",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 169017758,
+                "Percent": 2.87
+            },
+            {
+                "id": 9,
+                "AsOf": "2021/01/19",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 131240263,
+                "Percent": 2.22
+            },
+            {
+                "id": 10,
+                "AsOf": "2021/01/19",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 130149950,
+                "Percent": 2.21
+            },
+            {
+                "id": 11,
+                "AsOf": "2021/01/20",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1279139303,
+                "Percent": 21.73
+            },
+            {
+                "id": 12,
+                "AsOf": "2021/01/20",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 569663876,
+                "Percent": 9.67
+            },
+            {
+                "id": 13,
+                "AsOf": "2021/01/20",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 463333362,
+                "Percent": 7.87
+            },
+            {
+                "id": 14,
+                "AsOf": "2021/01/20",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 432779658,
+                "Percent": 7.35
+            },
+            {
+                "id": 15,
+                "AsOf": "2021/01/20",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 207940126,
+                "Percent": 3.53
+            },
+            {
+                "id": 16,
+                "AsOf": "2021/01/20",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 195381109,
+                "Percent": 3.31
+            },
+            {
+                "id": 17,
+                "AsOf": "2021/01/20",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 176700722,
+                "Percent": 3.0
+            },
+            {
+                "id": 18,
+                "AsOf": "2021/01/20",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 168462488,
+                "Percent": 2.86
+            },
+            {
+                "id": 19,
+                "AsOf": "2021/01/20",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 131216734,
+                "Percent": 2.22
+            },
+            {
+                "id": 20,
+                "AsOf": "2021/01/20",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 127086298,
+                "Percent": 2.15
+            },
+            {
+                "id": 21,
+                "AsOf": "2021/01/21",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1279800483,
+                "Percent": 21.74
+            },
+            {
+                "id": 22,
+                "AsOf": "2021/01/21",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 567559071,
+                "Percent": 9.64
+            },
+            {
+                "id": 23,
+                "AsOf": "2021/01/21",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 462463749,
+                "Percent": 7.85
+            },
+            {
+                "id": 24,
+                "AsOf": "2021/01/21",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 433795028,
+                "Percent": 7.37
+            },
+            {
+                "id": 25,
+                "AsOf": "2021/01/21",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 208981026,
+                "Percent": 3.55
+            },
+            {
+                "id": 26,
+                "AsOf": "2021/01/21",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 199172409,
+                "Percent": 3.38
+            },
+            {
+                "id": 27,
+                "AsOf": "2021/01/21",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 178155990,
+                "Percent": 3.02
+            },
+            {
+                "id": 28,
+                "AsOf": "2021/01/21",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 166769711,
+                "Percent": 2.83
+            },
+            {
+                "id": 29,
+                "AsOf": "2021/01/21",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 131702300,
+                "Percent": 2.23
+            },
+            {
+                "id": 30,
+                "AsOf": "2021/01/21",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 131992069,
+                "Percent": 2.24
+            },
+            {
+                "id": 31,
+                "AsOf": "2021/01/22",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1281308969,
+                "Percent": 21.77
+            },
+            {
+                "id": 32,
+                "AsOf": "2021/01/22",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 566812264,
+                "Percent": 9.63
+            },
+            {
+                "id": 33,
+                "AsOf": "2021/01/22",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 461496102,
+                "Percent": 7.84
+            },
+            {
+                "id": 34,
+                "AsOf": "2021/01/22",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 433968225,
+                "Percent": 7.37
+            },
+            {
+                "id": 35,
+                "AsOf": "2021/01/22",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 210129001,
+                "Percent": 3.57
+            },
+            {
+                "id": 36,
+                "AsOf": "2021/01/22",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 202073717,
+                "Percent": 3.43
+            },
+            {
+                "id": 37,
+                "AsOf": "2021/01/22",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 176878806,
+                "Percent": 3.0
+            },
+            {
+                "id": 38,
+                "AsOf": "2021/01/22",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 169432120,
+                "Percent": 2.87
+            },
+            {
+                "id": 39,
+                "AsOf": "2021/01/22",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 131792622,
+                "Percent": 2.23
+            },
+            {
+                "id": 40,
+                "AsOf": "2021/01/22",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 137297690,
+                "Percent": 2.33
+            },
+            {
+                "id": 41,
+                "AsOf": "2021/01/23",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1281308969,
+                "Percent": 21.77
+            },
+            {
+                "id": 42,
+                "AsOf": "2021/01/23",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 566812264,
+                "Percent": 9.63
+            },
+            {
+                "id": 43,
+                "AsOf": "2021/01/23",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 461496102,
+                "Percent": 7.84
+            },
+            {
+                "id": 44,
+                "AsOf": "2021/01/23",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 433968225,
+                "Percent": 7.37
+            },
+            {
+                "id": 45,
+                "AsOf": "2021/01/23",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 210129001,
+                "Percent": 3.57
+            },
+            {
+                "id": 46,
+                "AsOf": "2021/01/23",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 202073717,
+                "Percent": 3.43
+            },
+            {
+                "id": 47,
+                "AsOf": "2021/01/23",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 176878806,
+                "Percent": 3.0
+            },
+            {
+                "id": 48,
+                "AsOf": "2021/01/23",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 169432120,
+                "Percent": 2.87
+            },
+            {
+                "id": 49,
+                "AsOf": "2021/01/23",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 131792622,
+                "Percent": 2.23
+            },
+            {
+                "id": 50,
+                "AsOf": "2021/01/23",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 137297690,
+                "Percent": 2.33
+            },
+            {
+                "id": 51,
+                "AsOf": "2021/01/24",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1281308969,
+                "Percent": 21.77
+            },
+            {
+                "id": 52,
+                "AsOf": "2021/01/24",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 566812264,
+                "Percent": 9.63
+            },
+            {
+                "id": 53,
+                "AsOf": "2021/01/24",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 461496102,
+                "Percent": 7.84
+            },
+            {
+                "id": 54,
+                "AsOf": "2021/01/24",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 433968225,
+                "Percent": 7.37
+            },
+            {
+                "id": 55,
+                "AsOf": "2021/01/24",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 210129001,
+                "Percent": 3.57
+            },
+            {
+                "id": 56,
+                "AsOf": "2021/01/24",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 202073717,
+                "Percent": 3.43
+            },
+            {
+                "id": 57,
+                "AsOf": "2021/01/24",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 176878806,
+                "Percent": 3.0
+            },
+            {
+                "id": 58,
+                "AsOf": "2021/01/24",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 169432120,
+                "Percent": 2.87
+            },
+            {
+                "id": 59,
+                "AsOf": "2021/01/24",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 131792622,
+                "Percent": 2.23
+            },
+            {
+                "id": 60,
+                "AsOf": "2021/01/24",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 137297690,
+                "Percent": 2.33
+            },
+            {
+                "id": 61,
+                "AsOf": "2021/01/25",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1280964277,
+                "Percent": 21.76
+            },
+            {
+                "id": 62,
+                "AsOf": "2021/01/25",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 567524777,
+                "Percent": 9.64
+            },
+            {
+                "id": 63,
+                "AsOf": "2021/01/25",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 461744368,
+                "Percent": 7.84
+            },
+            {
+                "id": 64,
+                "AsOf": "2021/01/25",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 432931808,
+                "Percent": 7.35
+            },
+            {
+                "id": 65,
+                "AsOf": "2021/01/25",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 211918923,
+                "Percent": 3.6
+            },
+            {
+                "id": 66,
+                "AsOf": "2021/01/25",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 206245973,
+                "Percent": 3.5
+            },
+            {
+                "id": 67,
+                "AsOf": "2021/01/25",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 174921442,
+                "Percent": 2.97
+            },
+            {
+                "id": 68,
+                "AsOf": "2021/01/25",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 168703115,
+                "Percent": 2.86
+            },
+            {
+                "id": 69,
+                "AsOf": "2021/01/25",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 132153601,
+                "Percent": 2.24
+            },
+            {
+                "id": 70,
+                "AsOf": "2021/01/25",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 136412933,
+                "Percent": 2.31
+            },
+            {
+                "id": 71,
+                "AsOf": "2021/01/26",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1280758546,
+                "Percent": 21.76
+            },
+            {
+                "id": 72,
+                "AsOf": "2021/01/26",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 566803589,
+                "Percent": 9.63
+            },
+            {
+                "id": 73,
+                "AsOf": "2021/01/26",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 461044198,
+                "Percent": 7.83
+            },
+            {
+                "id": 74,
+                "AsOf": "2021/01/26",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 431539068,
+                "Percent": 7.33
+            },
+            {
+                "id": 75,
+                "AsOf": "2021/01/26",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 213511081,
+                "Percent": 3.62
+            },
+            {
+                "id": 76,
+                "AsOf": "2021/01/26",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 208102873,
+                "Percent": 3.53
+            },
+            {
+                "id": 77,
+                "AsOf": "2021/01/26",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 175130828,
+                "Percent": 2.97
+            },
+            {
+                "id": 78,
+                "AsOf": "2021/01/26",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 168143467,
+                "Percent": 2.85
+            },
+            {
+                "id": 79,
+                "AsOf": "2021/01/26",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 131734002,
+                "Percent": 2.23
+            },
+            {
+                "id": 80,
+                "AsOf": "2021/01/26",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 137454136,
+                "Percent": 2.33
+            },
+            {
+                "id": 81,
+                "AsOf": "2021/01/27",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1281144451,
+                "Percent": 21.76
+            },
+            {
+                "id": 82,
+                "AsOf": "2021/01/27",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 563402599,
+                "Percent": 9.57
+            },
+            {
+                "id": 83,
+                "AsOf": "2021/01/27",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 461058582,
+                "Percent": 7.83
+            },
+            {
+                "id": 84,
+                "AsOf": "2021/01/27",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 432658716,
+                "Percent": 7.35
+            },
+            {
+                "id": 85,
+                "AsOf": "2021/01/27",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 214771465,
+                "Percent": 3.64
+            },
+            {
+                "id": 86,
+                "AsOf": "2021/01/27",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 209960273,
+                "Percent": 3.56
+            },
+            {
+                "id": 87,
+                "AsOf": "2021/01/27",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 174725330,
+                "Percent": 2.96
+            },
+            {
+                "id": 88,
+                "AsOf": "2021/01/27",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 167147137,
+                "Percent": 2.84
+            },
+            {
+                "id": 89,
+                "AsOf": "2021/01/27",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 132964072,
+                "Percent": 2.25
+            },
+            {
+                "id": 90,
+                "AsOf": "2021/01/27",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 137913853,
+                "Percent": 2.34
+            },
+            {
+                "id": 91,
+                "AsOf": "2021/01/28",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1281278002,
+                "Percent": 21.77
+            },
+            {
+                "id": 92,
+                "AsOf": "2021/01/28",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 561424991,
+                "Percent": 9.53
+            },
+            {
+                "id": 93,
+                "AsOf": "2021/01/28",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 461125647,
+                "Percent": 7.83
+            },
+            {
+                "id": 94,
+                "AsOf": "2021/01/28",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 432707245,
+                "Percent": 7.35
+            },
+            {
+                "id": 95,
+                "AsOf": "2021/01/28",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 215610765,
+                "Percent": 3.66
+            },
+            {
+                "id": 96,
+                "AsOf": "2021/01/28",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 208641373,
+                "Percent": 3.54
+            },
+            {
+                "id": 97,
+                "AsOf": "2021/01/28",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 172618185,
+                "Percent": 2.93
+            },
+            {
+                "id": 98,
+                "AsOf": "2021/01/28",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 167459015,
+                "Percent": 2.84
+            },
+            {
+                "id": 99,
+                "AsOf": "2021/01/28",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 132988762,
+                "Percent": 2.25
+            },
+            {
+                "id": 100,
+                "AsOf": "2021/01/28",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 131185255,
+                "Percent": 2.22
+            },
+            {
+                "id": 101,
+                "AsOf": "2021/01/29",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1278353638,
+                "Percent": 21.72
+            },
+            {
+                "id": 102,
+                "AsOf": "2021/01/29",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 557367151,
+                "Percent": 9.47
+            },
+            {
+                "id": 103,
+                "AsOf": "2021/01/29",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 461490395,
+                "Percent": 7.84
+            },
+            {
+                "id": 104,
+                "AsOf": "2021/01/29",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 432054455,
+                "Percent": 7.34
+            },
+            {
+                "id": 105,
+                "AsOf": "2021/01/29",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 221561865,
+                "Percent": 3.76
+            },
+            {
+                "id": 106,
+                "AsOf": "2021/01/29",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 208590673,
+                "Percent": 3.54
+            },
+            {
+                "id": 107,
+                "AsOf": "2021/01/29",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 172099715,
+                "Percent": 2.92
+            },
+            {
+                "id": 108,
+                "AsOf": "2021/01/29",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 167522993,
+                "Percent": 2.84
+            },
+            {
+                "id": 109,
+                "AsOf": "2021/01/29",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 133639734,
+                "Percent": 2.27
+            },
+            {
+                "id": 110,
+                "AsOf": "2021/01/29",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 125283037,
+                "Percent": 2.12
+            },
+            {
+                "id": 111,
+                "AsOf": "2021/01/30",
+                "ParticipantId": "C00019",
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Shareholding": 1278353638,
+                "Percent": 21.72
+            },
+            {
+                "id": 112,
+                "AsOf": "2021/01/30",
+                "ParticipantId": "C00100",
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Shareholding": 557367151,
+                "Percent": 9.47
+            },
+            {
+                "id": 113,
+                "AsOf": "2021/01/30",
+                "ParticipantId": "C00010",
+                "Name": "CITIBANK N.A.",
+                "Shareholding": 461490395,
+                "Percent": 7.84
+            },
+            {
+                "id": 114,
+                "AsOf": "2021/01/30",
+                "ParticipantId": "B01224",
+                "Name": "MERRILL LYNCH FAR EAST LTD",
+                "Shareholding": 432054455,
+                "Percent": 7.34
+            },
+            {
+                "id": 115,
+                "AsOf": "2021/01/30",
+                "ParticipantId": "A00004",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 221561865,
+                "Percent": 3.76
+            },
+            {
+                "id": 116,
+                "AsOf": "2021/01/30",
+                "ParticipantId": "A00003",
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Shareholding": 208590673,
+                "Percent": 3.54
+            },
+            {
+                "id": 117,
+                "AsOf": "2021/01/30",
+                "ParticipantId": "B01274",
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Shareholding": 172099715,
+                "Percent": 2.92
+            },
+            {
+                "id": 118,
+                "AsOf": "2021/01/30",
+                "ParticipantId": "B01161",
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Shareholding": 167522993,
+                "Percent": 2.84
+            },
+            {
+                "id": 119,
+                "AsOf": "2021/01/30",
+                "ParticipantId": "C00039",
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Shareholding": 133639734,
+                "Percent": 2.27
+            },
+            {
+                "id": 120,
+                "AsOf": "2021/01/30",
+                "ParticipantId": "B01451",
+                "Name": "GOLDMAN SACHS (ASIA) SECURITIES LTD",
+                "Shareholding": 125283037,
+                "Percent": 2.12
+            }
+        ]
+    },
+    "Chart": {
+        "Min": 125183037,
+        "Max": 1281408969,
+        "Data": [
+            {
+                "id": "GOLDMAN SACHS (ASIA) SECURITIES LTD_B01451",
+                "data": [
+                    {
+                        "x": "01/19",
+                        "y": 130149950
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 127086298
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 131992069
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 137297690
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 137297690
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 137297690
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 136412933
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 137454136
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 137913853
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 131185255
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 125283037
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 125283037
+                    }
+                ]
+            },
+            {
+                "id": "STANDARD CHARTERED BANK (HONG KONG) LTD_C00039",
+                "data": [
+                    {
+                        "x": "01/19",
+                        "y": 131240263
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 131216734
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 131702300
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 131792622
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 131792622
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 131792622
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 132153601
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 131734002
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 132964072
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 132988762
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 133639734
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 133639734
+                    }
+                ]
+            },
+            {
+                "id": "UBS SECURITIES HONG KONG LTD_B01161",
+                "data": [
+                    {
+                        "x": "01/19",
+                        "y": 169017758
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 168462488
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 166769711
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 169432120
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 169432120
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 169432120
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 168703115
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 168143467
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 167147137
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 167459015
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 167522993
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 167522993
+                    }
+                ]
+            },
+            {
+                "id": "MORGAN STANLEY HONG KONG SECURITIES LTD_B01274",
+                "data": [
+                    {
+                        "x": "01/19",
+                        "y": 175681196
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 176700722
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 178155990
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 176878806
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 176878806
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 176878806
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 174921442
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 175130828
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 174725330
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 172618185
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 172099715
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 172099715
+                    }
+                ]
+            },
+            {
+                "id": "CHINA SECURITIES DEPOSITORY AND CLEARING_A00003",
+                "data": [
+                    {
+                        "x": "01/19",
+                        "y": 206048926
+                    },
+                    {
+                        "x": "01/19",
+                        "y": 193028468
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 207940126
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 195381109
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 208981026
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 199172409
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 210129001
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 202073717
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 210129001
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 202073717
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 210129001
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 202073717
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 211918923
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 206245973
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 213511081
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 208102873
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 214771465
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 209960273
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 215610765
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 208641373
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 221561865
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 208590673
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 221561865
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 208590673
+                    }
+                ]
+            },
+            {
+                "id": "CHINA SECURITIES DEPOSITORY AND CLEARING_A00004",
+                "data": [
+                    {
+                        "x": "01/19",
+                        "y": 206048926
+                    },
+                    {
+                        "x": "01/19",
+                        "y": 193028468
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 207940126
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 195381109
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 208981026
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 199172409
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 210129001
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 202073717
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 210129001
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 202073717
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 210129001
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 202073717
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 211918923
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 206245973
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 213511081
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 208102873
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 214771465
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 209960273
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 215610765
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 208641373
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 221561865
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 208590673
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 221561865
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 208590673
+                    }
+                ]
+            },
+            {
+                "id": "MERRILL LYNCH FAR EAST LTD_B01224",
+                "data": [
+                    {
+                        "x": "01/19",
+                        "y": 432320537
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 432779658
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 433795028
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 433968225
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 433968225
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 433968225
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 432931808
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 431539068
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 432658716
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 432707245
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 432054455
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 432054455
+                    }
+                ]
+            },
+            {
+                "id": "CITIBANK N.A._C00010",
+                "data": [
+                    {
+                        "x": "01/19",
+                        "y": 463823223
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 463333362
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 462463749
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 461496102
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 461496102
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 461496102
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 461744368
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 461044198
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 461058582
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 461125647
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 461490395
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 461490395
+                    }
+                ]
+            },
+            {
+                "id": "JPMORGAN CHASE BANK, NATIONAL_C00100",
+                "data": [
+                    {
+                        "x": "01/19",
+                        "y": 570475418
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 569663876
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 567559071
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 566812264
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 566812264
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 566812264
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 567524777
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 566803589
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 563402599
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 561424991
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 557367151
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 557367151
+                    }
+                ]
+            },
+            {
+                "id": "THE HONGKONG AND SHANGHAI BANKING_C00019",
+                "data": [
+                    {
+                        "x": "01/19",
+                        "y": 1278581024
+                    },
+                    {
+                        "x": "01/20",
+                        "y": 1279139303
+                    },
+                    {
+                        "x": "01/21",
+                        "y": 1279800483
+                    },
+                    {
+                        "x": "01/22",
+                        "y": 1281308969
+                    },
+                    {
+                        "x": "01/23",
+                        "y": 1281308969
+                    },
+                    {
+                        "x": "01/24",
+                        "y": 1281308969
+                    },
+                    {
+                        "x": "01/25",
+                        "y": 1280964277
+                    },
+                    {
+                        "x": "01/26",
+                        "y": 1280758546
+                    },
+                    {
+                        "x": "01/27",
+                        "y": 1281144451
+                    },
+                    {
+                        "x": "01/28",
+                        "y": 1281278002
+                    },
+                    {
+                        "x": "01/29",
+                        "y": 1278353638
+                    },
+                    {
+                        "x": "01/30",
+                        "y": 1278353638
+                    }
+                ]
+            }
+        ]
+    }
 }

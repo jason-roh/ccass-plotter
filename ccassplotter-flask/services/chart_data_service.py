@@ -13,16 +13,16 @@ class ChartDataService():
     @staticmethod
     def _create_line_data(result) -> [dict]:
         line_data = []
-        top_holders = [holder['Name'] for holder in result['Holders']]
+        top_holders = [holder for holder in result['Holders']]
 
         for holder in reversed(top_holders):
             holdings_per_holder = [
                 holding for holding in result['Holdings']
-                if holding['Name'] == holder
+                if holding['Name'] == holder['Name'] and holding['ParticipantId'] == holder['Id']
             ]
 
             line_dict = {
-                'id': holder,
+                'id': holder['Name'] + '_' + holder['Id'],
                 'data': [
                     {
                         'x': datetime.strptime(holding['AsOf'], '%Y/%m/%d').strftime('%m/%d'),

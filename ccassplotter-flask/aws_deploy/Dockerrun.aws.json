@@ -1,13 +1,13 @@
 {
-    "AWSEBDockerrunVersion": "1",
-    "Image": {
-      "Name": "277622302018.dkr.ecr.us-east-2.amazonaws.com/ccassplotter-flask",
-      "Update": "true"
-    },
-    "Ports": [
-      {
-        "ContainerPort": 8080,
-        "HostPort": 8080
-      }
-    ]
-  }
+  "AWSEBDockerrunVersion": "1",
+  "Image": {
+    "Name": "277622302018.dkr.ecr.us-east-2.amazonaws.com/ccassplotter-flask",
+    "Update": "true"
+  },
+  "Ports": [
+    {
+      "ContainerPort": 8080,
+      "HostPort": 8080
+    }
+  ]
+}
