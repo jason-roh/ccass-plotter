@@ -87,7 +87,6 @@ export default function HistoricalHoldings(props) {
         setStockName(event.target.value);
     };
 
-
     const handleNumberOfHolders = (event) => {
         setNumberOfHolders(event.target.value);
         ClearData();
@@ -274,7 +273,7 @@ export default function HistoricalHoldings(props) {
                             value={holderSelected}
                             onChange={handleHolderSelected} select>
                             <MenuItem key="All" value="All">All</MenuItem>
-                            {holdersData.map(k => <MenuItem key={k['Name']} value={k['Name']}>{k['Name']}</MenuItem>)}
+                            {holdersData.map(k => <MenuItem key={k['Key']} value={k['Key']}>{k['Key']}</MenuItem>)}
                         </TextField>
                     </Tooltip>
                     <Tooltip title={<span>Minimum value of Y Axis</span>}>

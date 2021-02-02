@@ -2,6 +2,7 @@ from datetime import datetime
 from services.holder_data_service import HolderDataSerivceSingle, HolderDataSerivceMulti
 from services.chart_data_service import ChartDataService
 
+
 class CcassPlotterService(object):
     def __init__(self):
         pass

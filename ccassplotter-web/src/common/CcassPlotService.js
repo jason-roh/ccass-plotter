@@ -37,7 +37,6 @@ const getAsyncHealthCheck = async () => {
     return (await fetch(getHealthCheckUrl)).json();
 };
 
-
 export {
     getAsyncHistoricalHoldings,
     getAsyncFindTransactions,
