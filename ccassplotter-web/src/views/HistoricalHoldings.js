@@ -1,12 +1,13 @@
 import './App.css';
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import { Container, TextField, Box, CircularProgress, IconButton, MenuItem } from '@material-ui/core';
 import { DataGrid } from '@material-ui/data-grid';
-import Tooltip from '@material-ui/core/Tooltip'
+import Tooltip from '@material-ui/core/Tooltip';
+import Alert from '@material-ui/lab/Alert';
 import { KeyboardDatePicker, MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
 import RefreshIcon from '@material-ui/icons/Refresh';
-import { ResponsiveLine } from '@nivo/line'
+import { ResponsiveLine } from '@nivo/line';
 import NumberFormat from "react-number-format";
 import { getAsyncHistoricalHoldings } from '../common/CcassPlotService';
 import { formatDate, validateInput, createString } from "../common/Utils";
@@ -191,6 +192,8 @@ export default function HistoricalHoldings(props) {
     return (
         <Container>
             <br></br><br></br>
+            <Alert severity="info">Note: it is running on limited resource. Please use it for less than 1 month of period.</Alert>
+            <br></br>
             <Box>
                 <h1>Trend Plot <IconButton onClick={clickRefreshButton}><RefreshIcon></RefreshIcon></IconButton>
                     {isRequested ? <CircularProgress></CircularProgress> : <p></p>}

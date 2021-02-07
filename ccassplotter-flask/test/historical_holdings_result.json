@@ -2,47 +2,57 @@
     "Result": {
         "TopHoldersAsOf": "20210131",
         "StockCode": "01128",
-        "StockName": "WYNN MACAU, LIMITED", 
+        "StockName": "WYNN MACAU, LIMITED",
         "Holders": [
             {
                 "Id": "C00100",
-                "Name": "JPMORGAN CHASE BANK, NATIONAL"
+                "Name": "JPMORGAN CHASE BANK, NATIONAL",
+                "Key": "JPMORGAN CHASE BANK, NATIONAL_C00100"
             },
             {
                 "Id": "C00019",
-                "Name": "THE HONGKONG AND SHANGHAI BANKING"
+                "Name": "THE HONGKONG AND SHANGHAI BANKING",
+                "Key": "THE HONGKONG AND SHANGHAI BANKING_C00019"
             },
             {
                 "Id": "C00010",
-                "Name": "CITIBANK N.A."
+                "Name": "CITIBANK N.A.",
+                "Key": "CITIBANK N.A._C00010"
             },
             {
                 "Id": "C00039",
-                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD"
+                "Name": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "Key": "STANDARD CHARTERED BANK (HONG KONG) LTD_C00039"
             },
             {
                 "Id": "B01130",
-                "Name": "BOCI SECURITIES LTD"
+                "Name": "BOCI SECURITIES LTD",
+                "Key": "BOCI SECURITIES LTD_B01130"
             },
             {
                 "Id": "A00003",
-                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING"
+                "Name": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "Key": "CHINA SECURITIES DEPOSITORY AND CLEARING_A00003"
             },
             {
                 "Id": "C00033",
-                "Name": "BANK OF CHINA (HONG KONG) LTD"
+                "Name": "BANK OF CHINA (HONG KONG) LTD",
+                "Key": "BANK OF CHINA (HONG KONG) LTD_C00033"
             },
             {
                 "Id": "C00074",
-                "Name": "DEUTSCHE BANK AG"
+                "Name": "DEUTSCHE BANK AG",
+                "Key": "DEUTSCHE BANK AG_C00074"
             },
             {
                 "Id": "B01274",
-                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD"
+                "Name": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "Key": "MORGAN STANLEY HONG KONG SECURITIES LTD_B01274"
             },
             {
                 "Id": "B01161",
-                "Name": "UBS SECURITIES HONG KONG LTD"
+                "Name": "UBS SECURITIES HONG KONG LTD",
+                "Key": "UBS SECURITIES HONG KONG LTD_B01161"
             }
         ],
         "Holdings": [
@@ -1013,7 +1023,7 @@
         "Max": 531603640,
         "Data": [
             {
-                "id": "UBS SECURITIES HONG KONG LTD",
+                "id": "UBS SECURITIES HONG KONG LTD_B01161",
                 "data": [
                     {
                         "x": "01/20",
@@ -1066,7 +1076,7 @@
                 ]
             },
             {
-                "id": "MORGAN STANLEY HONG KONG SECURITIES LTD",
+                "id": "MORGAN STANLEY HONG KONG SECURITIES LTD_B01274",
                 "data": [
                     {
                         "x": "01/20",
@@ -1119,7 +1129,7 @@
                 ]
             },
             {
-                "id": "DEUTSCHE BANK AG",
+                "id": "DEUTSCHE BANK AG_C00074",
                 "data": [
                     {
                         "x": "01/20",
@@ -1172,7 +1182,7 @@
                 ]
             },
             {
-                "id": "BANK OF CHINA (HONG KONG) LTD",
+                "id": "BANK OF CHINA (HONG KONG) LTD_C00033",
                 "data": [
                     {
                         "x": "01/20",
@@ -1225,7 +1235,7 @@
                 ]
             },
             {
-                "id": "CHINA SECURITIES DEPOSITORY AND CLEARING",
+                "id": "CHINA SECURITIES DEPOSITORY AND CLEARING_A00003",
                 "data": [
                     {
                         "x": "01/20",
@@ -1278,7 +1288,7 @@
                 ]
             },
             {
-                "id": "BOCI SECURITIES LTD",
+                "id": "BOCI SECURITIES LTD_B01130",
                 "data": [
                     {
                         "x": "01/20",
@@ -1331,7 +1341,7 @@
                 ]
             },
             {
-                "id": "STANDARD CHARTERED BANK (HONG KONG) LTD",
+                "id": "STANDARD CHARTERED BANK (HONG KONG) LTD_C00039",
                 "data": [
                     {
                         "x": "01/20",
@@ -1384,7 +1394,7 @@
                 ]
             },
             {
-                "id": "CITIBANK N.A.",
+                "id": "CITIBANK N.A._C00010",
                 "data": [
                     {
                         "x": "01/20",
@@ -1437,7 +1447,7 @@
                 ]
             },
             {
-                "id": "THE HONGKONG AND SHANGHAI BANKING",
+                "id": "THE HONGKONG AND SHANGHAI BANKING_C00019",
                 "data": [
                     {
                         "x": "01/20",
@@ -1490,7 +1500,7 @@
                 ]
             },
             {
-                "id": "JPMORGAN CHASE BANK, NATIONAL",
+                "id": "JPMORGAN CHASE BANK, NATIONAL_C00100",
                 "data": [
                     {
                         "x": "01/20",
