@@ -1,3 +1,4 @@
+from typing import List
 from datetime import datetime
 
 # Log scale chart can not accept zero value
@@ -11,7 +12,7 @@ class ChartDataService():
         return max(min(all_positions) - buffer, APPROXIMATE_ZERO), max(all_positions) + buffer
 
     @staticmethod
-    def _create_line_data(result) -> [dict]:
+    def _create_line_data(result) -> List[dict]:
         line_data = []
         top_holders = [holder for holder in result['Holders']]
 
