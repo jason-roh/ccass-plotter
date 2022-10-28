@@ -1,3 +1,4 @@
+from typing import Tuple
 import requests
 from bs4 import BeautifulSoup
 from functools import wraps
@@ -23,7 +24,7 @@ class HkexWebService(object):
         }
 
     @staticmethod
-    def parse_result(soup_obj) -> (str, dict):
+    def parse_result(soup_obj) -> Tuple[str, dict]:
         results = {}
         stock_name = ""
         keys = ["Name", "Address", "Shareholding", "Percent"]

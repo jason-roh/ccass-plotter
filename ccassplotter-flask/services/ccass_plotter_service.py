@@ -1,3 +1,4 @@
+from typing import List
 from datetime import datetime
 from services.holder_data_service import HolderDataSerivceSingle, HolderDataSerivceMulti
 from services.chart_data_service import ChartDataService
@@ -18,7 +19,7 @@ class CcassPlotterService(object):
         }
 
     @staticmethod
-    def filter_and_create_grid_data(all_holders_data, top_holders) -> [dict]:
+    def filter_and_create_grid_data(all_holders_data, top_holders) -> List[dict]:
         holding_data = []
         row_id = 1
 
